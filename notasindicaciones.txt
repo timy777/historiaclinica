@@ -1,3 +1,7 @@
+*para levantar proyecto mvn desde power shell dar tap autocompleta el comando
+
+*La base datos es Mysql crearse:historiac
+
 *comando para importar de 0 el jdl 
 jhipster jdl tu_archivo.jdl
 *Este comando sobreescribira entidades existentes y creara nuevas si hay
@@ -10,6 +14,8 @@ import jdl modelo.jdl --skip-user-management
 
 para importar sin datos fake
 jhipster import-jdl tu_archivo.jdl --skip-fake-data
+
+
 
 
 $env:JHIPSTER_JAVA_VERSION="17"

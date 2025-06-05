@@ -1,4 +1,10 @@
-# historiac
+=======
+
+# historiaclinica
+
+proyecto historia clinica generado con jhipster
+
+# historiac Base Datos
 
 This application was generated using JHipster 7.8.0, you can find documentation and help at [https://www.jhipster.tech](https://www.jhipster.tech).
 
