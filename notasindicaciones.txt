@@ -1,0 +1,21 @@
+*comando para importar de 0 el jdl 
+jhipster jdl tu_archivo.jdl
+*Este comando sobreescribira entidades existentes y creara nuevas si hay
+jhipster jdl modelo.jdl --force
+*si solo quieres modificar backend sin frontend 
+jhipster jdl modelo.jdl --skip-client
+
+para importar y excluir la parte de usuario
+import jdl modelo.jdl --skip-user-management
+
+para importar sin datos fake
+jhipster import-jdl tu_archivo.jdl --skip-fake-data
+
+
+$env:JHIPSTER_JAVA_VERSION="17"
+jhipster
+
+liquibase update --changelog-file="src/main/resources/config/liquibase/master.xml" `
+  --url="jdbc:postgresql://localhost:5432/historiaclinica" `
+  --username="postgres" `
+  --password="123456"
