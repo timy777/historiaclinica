@@ -1,0 +1,86 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-sala-medica-heading"
+        data-cy="SalaMedicaCreateUpdateHeading"
+        jhiTranslate="historiacApp.salaMedica.home.createOrEditLabel"
+      >
+        Create or edit a Sala Medica
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.salaMedica.nroSala" for="field_nroSala">Nro Sala</label>
+          <input type="number" class="form-control" name="nroSala" id="field_nroSala" data-cy="nroSala" formControlName="nroSala" />
+          <div *ngIf="editForm.get('nroSala')!.invalid && (editForm.get('nroSala')!.dirty || editForm.get('nroSala')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nroSala')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('nroSala')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.salaMedica.nombre" for="field_nombre">Nombre</label>
+          <input type="text" class="form-control" name="nombre" id="field_nombre" data-cy="nombre" formControlName="nombre" />
+          <div *ngIf="editForm.get('nombre')!.invalid && (editForm.get('nombre')!.dirty || editForm.get('nombre')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nombre')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.salaMedica.ubicacion" for="field_ubicacion">Ubicacion</label>
+          <input type="text" class="form-control" name="ubicacion" id="field_ubicacion" data-cy="ubicacion" formControlName="ubicacion" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.salaMedica.equipamiento" for="field_equipamiento">Equipamiento</label>
+          <input
+            type="text"
+            class="form-control"
+            name="equipamiento"
+            id="field_equipamiento"
+            data-cy="equipamiento"
+            formControlName="equipamiento"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

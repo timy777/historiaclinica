@@ -1,0 +1,106 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-cita-medica-heading"
+        data-cy="CitaMedicaCreateUpdateHeading"
+        jhiTranslate="historiacApp.citaMedica.home.createOrEditLabel"
+      >
+        Create or edit a Cita Medica
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.citaMedica.fechaCita" for="field_fechaCita">Fecha Cita</label>
+          <div class="input-group">
+            <input
+              id="field_fechaCita"
+              data-cy="fechaCita"
+              type="text"
+              class="form-control"
+              name="fechaCita"
+              ngbDatepicker
+              #fechaCitaDp="ngbDatepicker"
+              formControlName="fechaCita"
+            />
+            <button type="button" class="btn btn-secondary" (click)="fechaCitaDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          <div *ngIf="editForm.get('fechaCita')!.invalid && (editForm.get('fechaCita')!.dirty || editForm.get('fechaCita')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('fechaCita')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.citaMedica.horaCita" for="field_horaCita">Hora Cita</label>
+          <input type="text" class="form-control" name="horaCita" id="field_horaCita" data-cy="horaCita" formControlName="horaCita" />
+          <div *ngIf="editForm.get('horaCita')!.invalid && (editForm.get('horaCita')!.dirty || editForm.get('horaCita')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('horaCita')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.citaMedica.motivo" for="field_motivo">Motivo</label>
+          <input type="text" class="form-control" name="motivo" id="field_motivo" data-cy="motivo" formControlName="motivo" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.citaMedica.estado" for="field_estado">Estado</label>
+          <input type="text" class="form-control" name="estado" id="field_estado" data-cy="estado" formControlName="estado" />
+          <div *ngIf="editForm.get('estado')!.invalid && (editForm.get('estado')!.dirty || editForm.get('estado')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('estado')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.citaMedica.paciente" for="field_paciente">Paciente</label>
+          <select class="form-control" id="field_paciente" data-cy="paciente" name="paciente" formControlName="paciente">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="pacienteOption.id === editForm.get('paciente')!.value?.id ? editForm.get('paciente')!.value : pacienteOption"
+              *ngFor="let pacienteOption of pacientesSharedCollection; trackBy: trackPacienteById"
+            >
+              {{ pacienteOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

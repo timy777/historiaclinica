@@ -1,0 +1,127 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-estudio-medico-heading"
+        data-cy="EstudioMedicoCreateUpdateHeading"
+        jhiTranslate="historiacApp.estudioMedico.home.createOrEditLabel"
+      >
+        Create or edit a Estudio Medico
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.estudioMedico.tipoEstudio" for="field_tipoEstudio">Tipo Estudio</label>
+          <input
+            type="text"
+            class="form-control"
+            name="tipoEstudio"
+            id="field_tipoEstudio"
+            data-cy="tipoEstudio"
+            formControlName="tipoEstudio"
+          />
+          <div *ngIf="editForm.get('tipoEstudio')!.invalid && (editForm.get('tipoEstudio')!.dirty || editForm.get('tipoEstudio')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('tipoEstudio')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.estudioMedico.resultado" for="field_resultado">Resultado</label>
+          <input type="text" class="form-control" name="resultado" id="field_resultado" data-cy="resultado" formControlName="resultado" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.estudioMedico.fechaRealizacion" for="field_fechaRealizacion"
+            >Fecha Realizacion</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_fechaRealizacion"
+              data-cy="fechaRealizacion"
+              type="datetime-local"
+              class="form-control"
+              name="fechaRealizacion"
+              formControlName="fechaRealizacion"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div
+            *ngIf="
+              editForm.get('fechaRealizacion')!.invalid &&
+              (editForm.get('fechaRealizacion')!.dirty || editForm.get('fechaRealizacion')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('fechaRealizacion')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('fechaRealizacion')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.estudioMedico.consultaMedica" for="field_consultaMedica"
+            >Consulta Medica</label
+          >
+          <select
+            class="form-control"
+            id="field_consultaMedica"
+            data-cy="consultaMedica"
+            name="consultaMedica"
+            formControlName="consultaMedica"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                consultaMedicaOption.id === editForm.get('consultaMedica')!.value?.id
+                  ? editForm.get('consultaMedica')!.value
+                  : consultaMedicaOption
+              "
+              *ngFor="let consultaMedicaOption of consultaMedicasSharedCollection; trackBy: trackConsultaMedicaById"
+            >
+              {{ consultaMedicaOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+{
+  "historiacApp": {
+    "personalMedico": {
+      "home": {
+        "title": "Personal Medicos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Personal Medico",
+        "createOrEditLabel": "Create or edit a Personal Medico",
+        "notFound": "No Personal Medicos found"
+      },
+      "created": "A new Personal Medico is created with identifier {{ param }}",
+      "updated": "A Personal Medico is updated with identifier {{ param }}",
+      "deleted": "A Personal Medico is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Personal Medico {{ id }}?"
+      },
+      "detail": {
+        "title": "Personal Medico"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "especialidad": "Especialidad",
+      "telefonoContacto": "Telefono Contacto",
+      "correo": "Correo",
+      "licenciaMedica": "Licencia Medica",
+      "consultaMedica": "Consulta Medica"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "historiacApp": {
+    "estudioMedico": {
+      "home": {
+        "title": "Estudio Medicos",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Estudio Medico",
+        "createOrEditLabel": "Crear o editar Estudio Medico",
+        "notFound": "Ningún Estudio Medicos encontrado"
+      },
+      "created": "Un nuevo Estudio Medico ha sido creado con el identificador {{ param }}",
+      "updated": "Un Estudio Medico ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Estudio Medico ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Estudio Medico {{ id }}?"
+      },
+      "detail": {
+        "title": "Estudio Medico"
+      },
+      "id": "ID",
+      "tipoEstudio": "Tipo Estudio",
+      "resultado": "Resultado",
+      "fechaRealizacion": "Fecha Realizacion",
+      "consultaMedica": "Consulta Medica"
+    }
+  }
+}

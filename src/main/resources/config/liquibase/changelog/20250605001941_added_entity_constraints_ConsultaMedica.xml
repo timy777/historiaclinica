@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity ConsultaMedica.
+    -->
+    <changeSet id="20250605001941-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="personal_medico_id"
+                                 baseTableName="consulta_medica"
+                                 constraintName="fk_consulta_medica__personal_medico_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="personal_medico"/>
+
+        <addForeignKeyConstraint baseColumnNames="paciente_id"
+                                 baseTableName="consulta_medica"
+                                 constraintName="fk_consulta_medica__paciente_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="paciente"/>
+    </changeSet>
+</databaseChangeLog>

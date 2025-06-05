@@ -1,0 +1,44 @@
+{
+  "applications": "*",
+  "changelogDate": "20250605001938",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "personal_medico",
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "especialidad",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telefonoContacto",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "correo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "licenciaMedica",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "PersonalMedico",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "consultaMedica",
+      "otherEntityRelationshipName": "personalMedico",
+      "relationshipName": "consultaMedica",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

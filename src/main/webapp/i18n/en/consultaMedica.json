@@ -1,0 +1,33 @@
+{
+  "historiacApp": {
+    "consultaMedica": {
+      "home": {
+        "title": "Consulta Medicas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Consulta Medica",
+        "createOrEditLabel": "Create or edit a Consulta Medica",
+        "notFound": "No Consulta Medicas found"
+      },
+      "created": "A new Consulta Medica is created with identifier {{ param }}",
+      "updated": "A Consulta Medica is updated with identifier {{ param }}",
+      "deleted": "A Consulta Medica is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Consulta Medica {{ id }}?"
+      },
+      "detail": {
+        "title": "Consulta Medica"
+      },
+      "id": "ID",
+      "diagnostico": "Diagnostico",
+      "tratamientoSugerido": "Tratamiento Sugerido",
+      "observaciones": "Observaciones",
+      "fechaConsulta": "Fecha Consulta",
+      "evaluacionFisica": "Evaluacion Fisica",
+      "medicacion": "Medicacion",
+      "tratamiento": "Tratamiento",
+      "estudioMedico": "Estudio Medico",
+      "personalMedico": "Personal Medico",
+      "paciente": "Paciente"
+    }
+  }
+}

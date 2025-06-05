@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="personalMedico">
+      <h2 data-cy="personalMedicoDetailsHeading"><span jhiTranslate="historiacApp.personalMedico.detail.title">Personal Medico</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ personalMedico.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.personalMedico.nombre">Nombre</span></dt>
+        <dd>
+          <span>{{ personalMedico.nombre }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.personalMedico.especialidad">Especialidad</span></dt>
+        <dd>
+          <span>{{ personalMedico.especialidad }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.personalMedico.telefonoContacto">Telefono Contacto</span></dt>
+        <dd>
+          <span>{{ personalMedico.telefonoContacto }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.personalMedico.correo">Correo</span></dt>
+        <dd>
+          <span>{{ personalMedico.correo }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.personalMedico.licenciaMedica">Licencia Medica</span></dt>
+        <dd>
+          <span>{{ personalMedico.licenciaMedica }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/personal-medico', personalMedico.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

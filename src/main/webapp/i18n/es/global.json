@@ -7,6 +7,16 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entidades",
+        "salaMedica": "Sala Medica",
+        "procesoMedico": "Proceso Medico",
+        "personalMedico": "Personal Medico",
+        "paciente": "Paciente",
+        "citaMedica": "Cita Medica",
+        "consultaMedica": "Consulta Medica",
+        "evaluacionFisica": "Evaluacion Fisica",
+        "medicacion": "Medicacion",
+        "tratamiento": "Tratamiento",
+        "estudioMedico": "Estudio Medico",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

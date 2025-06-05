@@ -1,0 +1,55 @@
+{
+  "applications": "*",
+  "changelogDate": "20250605001939",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "paciente",
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fechaNacimiento",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "genero",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "direccion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telefonoContacto",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "historialMedico",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Paciente",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "citaMedica",
+      "otherEntityRelationshipName": "paciente",
+      "relationshipName": "citaMedica",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "consultaMedica",
+      "otherEntityRelationshipName": "paciente",
+      "relationshipName": "consultaMedica",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

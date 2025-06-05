@@ -1,0 +1,47 @@
+{
+  "applications": "*",
+  "changelogDate": "20250605001942",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "evaluacion_fisica",
+  "fields": [
+    {
+      "fieldName": "presionArterial",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "temperatura",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "ritmoCardiaco",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "frecuenciaRespiratoria",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "peso",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "altura",
+      "fieldType": "Float"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "EvaluacionFisica",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "consultaMedica",
+      "otherEntityRelationshipName": "evaluacionFisica",
+      "relationshipName": "consultaMedica",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

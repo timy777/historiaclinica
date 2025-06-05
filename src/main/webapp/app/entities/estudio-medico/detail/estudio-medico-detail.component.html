@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="estudioMedico">
+      <h2 data-cy="estudioMedicoDetailsHeading"><span jhiTranslate="historiacApp.estudioMedico.detail.title">Estudio Medico</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ estudioMedico.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.estudioMedico.tipoEstudio">Tipo Estudio</span></dt>
+        <dd>
+          <span>{{ estudioMedico.tipoEstudio }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.estudioMedico.resultado">Resultado</span></dt>
+        <dd>
+          <span>{{ estudioMedico.resultado }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.estudioMedico.fechaRealizacion">Fecha Realizacion</span></dt>
+        <dd>
+          <span>{{ estudioMedico.fechaRealizacion | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.estudioMedico.consultaMedica">Consulta Medica</span></dt>
+        <dd>
+          <div *ngIf="estudioMedico.consultaMedica">
+            <a [routerLink]="['/consulta-medica', estudioMedico.consultaMedica?.id, 'view']">{{ estudioMedico.consultaMedica?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/estudio-medico', estudioMedico.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+{
+  "historiacApp": {
+    "citaMedica": {
+      "home": {
+        "title": "Cita Medicas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Cita Medica",
+        "createOrEditLabel": "Create or edit a Cita Medica",
+        "notFound": "No Cita Medicas found"
+      },
+      "created": "A new Cita Medica is created with identifier {{ param }}",
+      "updated": "A Cita Medica is updated with identifier {{ param }}",
+      "deleted": "A Cita Medica is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Cita Medica {{ id }}?"
+      },
+      "detail": {
+        "title": "Cita Medica"
+      },
+      "id": "ID",
+      "fechaCita": "Fecha Cita",
+      "horaCita": "Hora Cita",
+      "motivo": "Motivo",
+      "estado": "Estado",
+      "paciente": "Paciente"
+    }
+  }
+}

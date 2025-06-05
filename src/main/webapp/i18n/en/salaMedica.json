@@ -1,0 +1,27 @@
+{
+  "historiacApp": {
+    "salaMedica": {
+      "home": {
+        "title": "Sala Medicas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Sala Medica",
+        "createOrEditLabel": "Create or edit a Sala Medica",
+        "notFound": "No Sala Medicas found"
+      },
+      "created": "A new Sala Medica is created with identifier {{ param }}",
+      "updated": "A Sala Medica is updated with identifier {{ param }}",
+      "deleted": "A Sala Medica is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Sala Medica {{ id }}?"
+      },
+      "detail": {
+        "title": "Sala Medica"
+      },
+      "id": "ID",
+      "nroSala": "Nro Sala",
+      "nombre": "Nombre",
+      "ubicacion": "Ubicacion",
+      "equipamiento": "Equipamiento"
+    }
+  }
+}

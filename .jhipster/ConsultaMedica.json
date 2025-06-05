@@ -1,0 +1,71 @@
+{
+  "applications": "*",
+  "changelogDate": "20250605001941",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "consulta_medica",
+  "fields": [
+    {
+      "fieldName": "diagnostico",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "tratamientoSugerido",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "observaciones",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fechaConsulta",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ConsultaMedica",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "evaluacionFisica",
+      "otherEntityRelationshipName": "consultaMedica",
+      "relationshipName": "evaluacionFisica",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "medicacion",
+      "otherEntityRelationshipName": "consultaMedica",
+      "relationshipName": "medicacion",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "tratamiento",
+      "otherEntityRelationshipName": "consultaMedica",
+      "relationshipName": "tratamiento",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "estudioMedico",
+      "otherEntityRelationshipName": "consultaMedica",
+      "relationshipName": "estudioMedico",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "personalMedico",
+      "otherEntityRelationshipName": "consultaMedica",
+      "relationshipName": "personalMedico",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "paciente",
+      "otherEntityRelationshipName": "consultaMedica",
+      "relationshipName": "paciente",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

@@ -1,0 +1,30 @@
+{
+  "historiacApp": {
+    "evaluacionFisica": {
+      "home": {
+        "title": "Evaluacion Fisicas",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Evaluacion Fisica",
+        "createOrEditLabel": "Crear o editar Evaluacion Fisica",
+        "notFound": "Ningún Evaluacion Fisicas encontrado"
+      },
+      "created": "Un nuevo Evaluacion Fisica ha sido creado con el identificador {{ param }}",
+      "updated": "Un Evaluacion Fisica ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Evaluacion Fisica ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Evaluacion Fisica {{ id }}?"
+      },
+      "detail": {
+        "title": "Evaluacion Fisica"
+      },
+      "id": "ID",
+      "presionArterial": "Presion Arterial",
+      "temperatura": "Temperatura",
+      "ritmoCardiaco": "Ritmo Cardiaco",
+      "frecuenciaRespiratoria": "Frecuencia Respiratoria",
+      "peso": "Peso",
+      "altura": "Altura",
+      "consultaMedica": "Consulta Medica"
+    }
+  }
+}

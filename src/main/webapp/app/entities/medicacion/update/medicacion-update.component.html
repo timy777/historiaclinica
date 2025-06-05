@@ -1,0 +1,116 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-medicacion-heading" data-cy="MedicacionCreateUpdateHeading" jhiTranslate="historiacApp.medicacion.home.createOrEditLabel">
+        Create or edit a Medicacion
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.medicacion.nombreMedicamento" for="field_nombreMedicamento"
+            >Nombre Medicamento</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="nombreMedicamento"
+            id="field_nombreMedicamento"
+            data-cy="nombreMedicamento"
+            formControlName="nombreMedicamento"
+          />
+          <div
+            *ngIf="
+              editForm.get('nombreMedicamento')!.invalid &&
+              (editForm.get('nombreMedicamento')!.dirty || editForm.get('nombreMedicamento')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nombreMedicamento')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.medicacion.dosis" for="field_dosis">Dosis</label>
+          <input type="text" class="form-control" name="dosis" id="field_dosis" data-cy="dosis" formControlName="dosis" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.medicacion.frecuencia" for="field_frecuencia">Frecuencia</label>
+          <input
+            type="text"
+            class="form-control"
+            name="frecuencia"
+            id="field_frecuencia"
+            data-cy="frecuencia"
+            formControlName="frecuencia"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.medicacion.viaAdministracion" for="field_viaAdministracion"
+            >Via Administracion</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="viaAdministracion"
+            id="field_viaAdministracion"
+            data-cy="viaAdministracion"
+            formControlName="viaAdministracion"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.medicacion.consultaMedica" for="field_consultaMedica">Consulta Medica</label>
+          <select
+            class="form-control"
+            id="field_consultaMedica"
+            data-cy="consultaMedica"
+            name="consultaMedica"
+            formControlName="consultaMedica"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                consultaMedicaOption.id === editForm.get('consultaMedica')!.value?.id
+                  ? editForm.get('consultaMedica')!.value
+                  : consultaMedicaOption
+              "
+              *ngFor="let consultaMedicaOption of consultaMedicasSharedCollection; trackBy: trackConsultaMedicaById"
+            >
+              {{ consultaMedicaOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

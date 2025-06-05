@@ -1,0 +1,27 @@
+{
+  "historiacApp": {
+    "procesoMedico": {
+      "home": {
+        "title": "Proceso Medicos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Proceso Medico",
+        "createOrEditLabel": "Create or edit a Proceso Medico",
+        "notFound": "No Proceso Medicos found"
+      },
+      "created": "A new Proceso Medico is created with identifier {{ param }}",
+      "updated": "A Proceso Medico is updated with identifier {{ param }}",
+      "deleted": "A Proceso Medico is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Proceso Medico {{ id }}?"
+      },
+      "detail": {
+        "title": "Proceso Medico"
+      },
+      "id": "ID",
+      "tipoProceso": "Tipo Proceso",
+      "fechaInicio": "Fecha Inicio",
+      "fechaFin": "Fecha Fin",
+      "estado": "Estado"
+    }
+  }
+}

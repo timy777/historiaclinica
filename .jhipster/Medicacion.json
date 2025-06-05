@@ -1,0 +1,40 @@
+{
+  "applications": "*",
+  "changelogDate": "20250605001943",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "medicacion",
+  "fields": [
+    {
+      "fieldName": "nombreMedicamento",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dosis",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "frecuencia",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "viaAdministracion",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Medicacion",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "consultaMedica",
+      "otherEntityRelationshipName": "medicacion",
+      "relationshipName": "consultaMedica",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

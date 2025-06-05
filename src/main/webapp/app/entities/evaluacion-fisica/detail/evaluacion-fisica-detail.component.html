@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="evaluacionFisica">
+      <h2 data-cy="evaluacionFisicaDetailsHeading">
+        <span jhiTranslate="historiacApp.evaluacionFisica.detail.title">Evaluacion Fisica</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ evaluacionFisica.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.evaluacionFisica.presionArterial">Presion Arterial</span></dt>
+        <dd>
+          <span>{{ evaluacionFisica.presionArterial }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.evaluacionFisica.temperatura">Temperatura</span></dt>
+        <dd>
+          <span>{{ evaluacionFisica.temperatura }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.evaluacionFisica.ritmoCardiaco">Ritmo Cardiaco</span></dt>
+        <dd>
+          <span>{{ evaluacionFisica.ritmoCardiaco }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.evaluacionFisica.frecuenciaRespiratoria">Frecuencia Respiratoria</span></dt>
+        <dd>
+          <span>{{ evaluacionFisica.frecuenciaRespiratoria }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.evaluacionFisica.peso">Peso</span></dt>
+        <dd>
+          <span>{{ evaluacionFisica.peso }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.evaluacionFisica.altura">Altura</span></dt>
+        <dd>
+          <span>{{ evaluacionFisica.altura }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.evaluacionFisica.consultaMedica">Consulta Medica</span></dt>
+        <dd>
+          <div *ngIf="evaluacionFisica.consultaMedica">
+            <a [routerLink]="['/consulta-medica', evaluacionFisica.consultaMedica?.id, 'view']">{{
+              evaluacionFisica.consultaMedica?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/evaluacion-fisica', evaluacionFisica.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

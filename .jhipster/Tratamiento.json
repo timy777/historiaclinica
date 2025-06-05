@@ -1,0 +1,36 @@
+{
+  "applications": "*",
+  "changelogDate": "20250605001944",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tratamiento",
+  "fields": [
+    {
+      "fieldName": "tipoTratamiento",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "duracion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "objetivo",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Tratamiento",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "consultaMedica",
+      "otherEntityRelationshipName": "tratamiento",
+      "relationshipName": "consultaMedica",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

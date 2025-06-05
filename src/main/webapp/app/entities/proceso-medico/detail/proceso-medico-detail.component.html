@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="procesoMedico">
+      <h2 data-cy="procesoMedicoDetailsHeading"><span jhiTranslate="historiacApp.procesoMedico.detail.title">Proceso Medico</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ procesoMedico.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.procesoMedico.tipoProceso">Tipo Proceso</span></dt>
+        <dd>
+          <span>{{ procesoMedico.tipoProceso }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.procesoMedico.fechaInicio">Fecha Inicio</span></dt>
+        <dd>
+          <span>{{ procesoMedico.fechaInicio | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.procesoMedico.fechaFin">Fecha Fin</span></dt>
+        <dd>
+          <span>{{ procesoMedico.fechaFin | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.procesoMedico.estado">Estado</span></dt>
+        <dd>
+          <span>{{ procesoMedico.estado }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/proceso-medico', procesoMedico.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

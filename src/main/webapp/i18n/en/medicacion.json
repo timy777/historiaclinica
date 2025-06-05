@@ -1,0 +1,28 @@
+{
+  "historiacApp": {
+    "medicacion": {
+      "home": {
+        "title": "Medicacions",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Medicacion",
+        "createOrEditLabel": "Create or edit a Medicacion",
+        "notFound": "No Medicacions found"
+      },
+      "created": "A new Medicacion is created with identifier {{ param }}",
+      "updated": "A Medicacion is updated with identifier {{ param }}",
+      "deleted": "A Medicacion is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Medicacion {{ id }}?"
+      },
+      "detail": {
+        "title": "Medicacion"
+      },
+      "id": "ID",
+      "nombreMedicamento": "Nombre Medicamento",
+      "dosis": "Dosis",
+      "frecuencia": "Frecuencia",
+      "viaAdministracion": "Via Administracion",
+      "consultaMedica": "Consulta Medica"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "applications": "*",
+  "changelogDate": "20250605001936",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "sala_medica",
+  "fields": [
+    {
+      "fieldName": "nroSala",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "ubicacion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "equipamiento",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "SalaMedica",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

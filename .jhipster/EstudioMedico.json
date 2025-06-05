@@ -1,0 +1,37 @@
+{
+  "applications": "*",
+  "changelogDate": "20250605001945",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "estudio_medico",
+  "fields": [
+    {
+      "fieldName": "tipoEstudio",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "resultado",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fechaRealizacion",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "EstudioMedico",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "consultaMedica",
+      "otherEntityRelationshipName": "estudioMedico",
+      "relationshipName": "consultaMedica",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

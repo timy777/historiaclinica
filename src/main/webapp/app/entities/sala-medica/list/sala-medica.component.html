@@ -1,0 +1,110 @@
+<div>
+  <h2 id="page-heading" data-cy="SalaMedicaHeading">
+    <span jhiTranslate="historiacApp.salaMedica.home.title">Sala Medicas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="historiacApp.salaMedica.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-sala-medica"
+        [routerLink]="['/sala-medica/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="historiacApp.salaMedica.home.createLabel"> Create a new Sala Medica </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="salaMedicas?.length === 0">
+    <span jhiTranslate="historiacApp.salaMedica.home.notFound">No salaMedicas found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="salaMedicas && salaMedicas.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nroSala">
+            <span jhiTranslate="historiacApp.salaMedica.nroSala">Nro Sala</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="nombre">
+            <span jhiTranslate="historiacApp.salaMedica.nombre">Nombre</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="ubicacion">
+            <span jhiTranslate="historiacApp.salaMedica.ubicacion">Ubicacion</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="equipamiento">
+            <span jhiTranslate="historiacApp.salaMedica.equipamiento">Equipamiento</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let salaMedica of salaMedicas; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/sala-medica', salaMedica.id, 'view']">{{ salaMedica.id }}</a>
+          </td>
+          <td>{{ salaMedica.nroSala }}</td>
+          <td>{{ salaMedica.nombre }}</td>
+          <td>{{ salaMedica.ubicacion }}</td>
+          <td>{{ salaMedica.equipamiento }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/sala-medica', salaMedica.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/sala-medica', salaMedica.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(salaMedica)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="salaMedicas && salaMedicas.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

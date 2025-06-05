@@ -1,0 +1,28 @@
+{
+  "historiacApp": {
+    "citaMedica": {
+      "home": {
+        "title": "Cita Medicas",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Cita Medica",
+        "createOrEditLabel": "Crear o editar Cita Medica",
+        "notFound": "Ningún Cita Medicas encontrado"
+      },
+      "created": "Un nuevo Cita Medica ha sido creado con el identificador {{ param }}",
+      "updated": "Un Cita Medica ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Cita Medica ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Cita Medica {{ id }}?"
+      },
+      "detail": {
+        "title": "Cita Medica"
+      },
+      "id": "ID",
+      "fechaCita": "Fecha Cita",
+      "horaCita": "Hora Cita",
+      "motivo": "Motivo",
+      "estado": "Estado",
+      "paciente": "Paciente"
+    }
+  }
+}

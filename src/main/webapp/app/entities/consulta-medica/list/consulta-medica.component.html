@@ -1,0 +1,126 @@
+<div>
+  <h2 id="page-heading" data-cy="ConsultaMedicaHeading">
+    <span jhiTranslate="historiacApp.consultaMedica.home.title">Consulta Medicas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="historiacApp.consultaMedica.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-consulta-medica"
+        [routerLink]="['/consulta-medica/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="historiacApp.consultaMedica.home.createLabel"> Create a new Consulta Medica </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="consultaMedicas?.length === 0">
+    <span jhiTranslate="historiacApp.consultaMedica.home.notFound">No consultaMedicas found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="consultaMedicas && consultaMedicas.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="diagnostico">
+            <span jhiTranslate="historiacApp.consultaMedica.diagnostico">Diagnostico</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="tratamientoSugerido">
+            <span jhiTranslate="historiacApp.consultaMedica.tratamientoSugerido">Tratamiento Sugerido</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="observaciones">
+            <span jhiTranslate="historiacApp.consultaMedica.observaciones">Observaciones</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="fechaConsulta">
+            <span jhiTranslate="historiacApp.consultaMedica.fechaConsulta">Fecha Consulta</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="personalMedico.id">
+            <span jhiTranslate="historiacApp.consultaMedica.personalMedico">Personal Medico</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="paciente.id">
+            <span jhiTranslate="historiacApp.consultaMedica.paciente">Paciente</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let consultaMedica of consultaMedicas; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/consulta-medica', consultaMedica.id, 'view']">{{ consultaMedica.id }}</a>
+          </td>
+          <td>{{ consultaMedica.diagnostico }}</td>
+          <td>{{ consultaMedica.tratamientoSugerido }}</td>
+          <td>{{ consultaMedica.observaciones }}</td>
+          <td>{{ consultaMedica.fechaConsulta | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="consultaMedica.personalMedico">
+              <a [routerLink]="['/personal-medico', consultaMedica.personalMedico?.id, 'view']">{{ consultaMedica.personalMedico?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="consultaMedica.paciente">
+              <a [routerLink]="['/paciente', consultaMedica.paciente?.id, 'view']">{{ consultaMedica.paciente?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/consulta-medica', consultaMedica.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/consulta-medica', consultaMedica.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(consultaMedica)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="consultaMedicas && consultaMedicas.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+{
+  "applications": "*",
+  "changelogDate": "20250605001940",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "cita_medica",
+  "fields": [
+    {
+      "fieldName": "fechaCita",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "horaCita",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "motivo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "estado",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "CitaMedica",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "paciente",
+      "otherEntityRelationshipName": "citaMedica",
+      "relationshipName": "paciente",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

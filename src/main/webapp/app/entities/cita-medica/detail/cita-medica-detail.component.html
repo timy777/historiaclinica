@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="citaMedica">
+      <h2 data-cy="citaMedicaDetailsHeading"><span jhiTranslate="historiacApp.citaMedica.detail.title">Cita Medica</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ citaMedica.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.citaMedica.fechaCita">Fecha Cita</span></dt>
+        <dd>
+          <span>{{ citaMedica.fechaCita | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.citaMedica.horaCita">Hora Cita</span></dt>
+        <dd>
+          <span>{{ citaMedica.horaCita }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.citaMedica.motivo">Motivo</span></dt>
+        <dd>
+          <span>{{ citaMedica.motivo }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.citaMedica.estado">Estado</span></dt>
+        <dd>
+          <span>{{ citaMedica.estado }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.citaMedica.paciente">Paciente</span></dt>
+        <dd>
+          <div *ngIf="citaMedica.paciente">
+            <a [routerLink]="['/paciente', citaMedica.paciente?.id, 'view']">{{ citaMedica.paciente?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/cita-medica', citaMedica.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

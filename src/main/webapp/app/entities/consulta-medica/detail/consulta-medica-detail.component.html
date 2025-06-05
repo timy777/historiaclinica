@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="consultaMedica">
+      <h2 data-cy="consultaMedicaDetailsHeading"><span jhiTranslate="historiacApp.consultaMedica.detail.title">Consulta Medica</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ consultaMedica.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.consultaMedica.diagnostico">Diagnostico</span></dt>
+        <dd>
+          <span>{{ consultaMedica.diagnostico }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.consultaMedica.tratamientoSugerido">Tratamiento Sugerido</span></dt>
+        <dd>
+          <span>{{ consultaMedica.tratamientoSugerido }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.consultaMedica.observaciones">Observaciones</span></dt>
+        <dd>
+          <span>{{ consultaMedica.observaciones }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.consultaMedica.fechaConsulta">Fecha Consulta</span></dt>
+        <dd>
+          <span>{{ consultaMedica.fechaConsulta | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.consultaMedica.personalMedico">Personal Medico</span></dt>
+        <dd>
+          <div *ngIf="consultaMedica.personalMedico">
+            <a [routerLink]="['/personal-medico', consultaMedica.personalMedico?.id, 'view']">{{ consultaMedica.personalMedico?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="historiacApp.consultaMedica.paciente">Paciente</span></dt>
+        <dd>
+          <div *ngIf="consultaMedica.paciente">
+            <a [routerLink]="['/paciente', consultaMedica.paciente?.id, 'view']">{{ consultaMedica.paciente?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/consulta-medica', consultaMedica.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
