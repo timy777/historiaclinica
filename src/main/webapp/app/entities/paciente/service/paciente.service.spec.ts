@@ -29,6 +29,9 @@ describe('Paciente Service', () => {
       fechaNacimiento: currentDate,
       genero: 'AAAAAAA',
       direccion: 'AAAAAAA',
+      carnetidentidad: 'AAAAAAA',
+      email: 'AAAAAAA',
+      password: 'AAAAAAA',
       telefonoContacto: 'AAAAAAA',
       historialMedico: 'AAAAAAA',
     };
@@ -81,6 +84,9 @@ describe('Paciente Service', () => {
           fechaNacimiento: currentDate.format(DATE_FORMAT),
           genero: 'BBBBBB',
           direccion: 'BBBBBB',
+          carnetidentidad: 'BBBBBB',
+          email: 'BBBBBB',
+          password: 'BBBBBB',
           telefonoContacto: 'BBBBBB',
           historialMedico: 'BBBBBB',
         },
@@ -107,6 +113,7 @@ describe('Paciente Service', () => {
           nombre: 'BBBBBB',
           genero: 'BBBBBB',
           direccion: 'BBBBBB',
+          password: 'BBBBBB',
         },
         new Paciente()
       );
@@ -135,6 +142,9 @@ describe('Paciente Service', () => {
           fechaNacimiento: currentDate.format(DATE_FORMAT),
           genero: 'BBBBBB',
           direccion: 'BBBBBB',
+          carnetidentidad: 'BBBBBB',
+          email: 'BBBBBB',
+          password: 'BBBBBB',
           telefonoContacto: 'BBBBBB',
           historialMedico: 'BBBBBB',
         },
@@ -193,7 +203,7 @@ describe('Paciente Service', () => {
       });
 
       it('should add only unique Paciente to an array', () => {
-        const pacienteArray: IPaciente[] = [{ id: 123 }, { id: 456 }, { id: 54584 }];
+        const pacienteArray: IPaciente[] = [{ id: 123 }, { id: 456 }, { id: 21096 }];
         const pacienteCollection: IPaciente[] = [{ id: 123 }];
         expectedResult = service.addPacienteToCollectionIfMissing(pacienteCollection, ...pacienteArray);
         expect(expectedResult).toHaveLength(3);

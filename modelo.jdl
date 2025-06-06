@@ -25,6 +25,9 @@ entity Paciente {
     fechaNacimiento LocalDate required
     genero String
     direccion String
+	carnetidentidad String required
+	email String required
+	password String required
     telefonoContacto String
     historialMedico String
 }

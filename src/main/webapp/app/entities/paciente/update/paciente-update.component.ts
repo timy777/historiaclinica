@@ -21,6 +21,9 @@ export class PacienteUpdateComponent implements OnInit {
     fechaNacimiento: [null, [Validators.required]],
     genero: [],
     direccion: [],
+    carnetidentidad: [null, [Validators.required]],
+    email: [null, [Validators.required]],
+    password: [null, [Validators.required]],
     telefonoContacto: [],
     historialMedico: [],
   });
@@ -73,6 +76,9 @@ export class PacienteUpdateComponent implements OnInit {
       fechaNacimiento: paciente.fechaNacimiento,
       genero: paciente.genero,
       direccion: paciente.direccion,
+      carnetidentidad: paciente.carnetidentidad,
+      email: paciente.email,
+      password: paciente.password,
       telefonoContacto: paciente.telefonoContacto,
       historialMedico: paciente.historialMedico,
     });
@@ -86,6 +92,9 @@ export class PacienteUpdateComponent implements OnInit {
       fechaNacimiento: this.editForm.get(['fechaNacimiento'])!.value,
       genero: this.editForm.get(['genero'])!.value,
       direccion: this.editForm.get(['direccion'])!.value,
+      carnetidentidad: this.editForm.get(['carnetidentidad'])!.value,
+      email: this.editForm.get(['email'])!.value,
+      password: this.editForm.get(['password'])!.value,
       telefonoContacto: this.editForm.get(['telefonoContacto'])!.value,
       historialMedico: this.editForm.get(['historialMedico'])!.value,
     };

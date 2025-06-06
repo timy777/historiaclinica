@@ -45,6 +45,15 @@ class PacienteResourceIT {
     private static final String DEFAULT_DIRECCION = "AAAAAAAAAA";
     private static final String UPDATED_DIRECCION = "BBBBBBBBBB";
 
+    private static final String DEFAULT_CARNETIDENTIDAD = "AAAAAAAAAA";
+    private static final String UPDATED_CARNETIDENTIDAD = "BBBBBBBBBB";
+
+    private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
+    private static final String UPDATED_EMAIL = "BBBBBBBBBB";
+
+    private static final String DEFAULT_PASSWORD = "AAAAAAAAAA";
+    private static final String UPDATED_PASSWORD = "BBBBBBBBBB";
+
     private static final String DEFAULT_TELEFONO_CONTACTO = "AAAAAAAAAA";
     private static final String UPDATED_TELEFONO_CONTACTO = "BBBBBBBBBB";
 
@@ -83,6 +92,9 @@ class PacienteResourceIT {
             .fechaNacimiento(DEFAULT_FECHA_NACIMIENTO)
             .genero(DEFAULT_GENERO)
             .direccion(DEFAULT_DIRECCION)
+            .carnetidentidad(DEFAULT_CARNETIDENTIDAD)
+            .email(DEFAULT_EMAIL)
+            .password(DEFAULT_PASSWORD)
             .telefonoContacto(DEFAULT_TELEFONO_CONTACTO)
             .historialMedico(DEFAULT_HISTORIAL_MEDICO);
         return paciente;
@@ -100,6 +112,9 @@ class PacienteResourceIT {
             .fechaNacimiento(UPDATED_FECHA_NACIMIENTO)
             .genero(UPDATED_GENERO)
             .direccion(UPDATED_DIRECCION)
+            .carnetidentidad(UPDATED_CARNETIDENTIDAD)
+            .email(UPDATED_EMAIL)
+            .password(UPDATED_PASSWORD)
             .telefonoContacto(UPDATED_TELEFONO_CONTACTO)
             .historialMedico(UPDATED_HISTORIAL_MEDICO);
         return paciente;
@@ -128,6 +143,9 @@ class PacienteResourceIT {
         assertThat(testPaciente.getFechaNacimiento()).isEqualTo(DEFAULT_FECHA_NACIMIENTO);
         assertThat(testPaciente.getGenero()).isEqualTo(DEFAULT_GENERO);
         assertThat(testPaciente.getDireccion()).isEqualTo(DEFAULT_DIRECCION);
+        assertThat(testPaciente.getCarnetidentidad()).isEqualTo(DEFAULT_CARNETIDENTIDAD);
+        assertThat(testPaciente.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testPaciente.getPassword()).isEqualTo(DEFAULT_PASSWORD);
         assertThat(testPaciente.getTelefonoContacto()).isEqualTo(DEFAULT_TELEFONO_CONTACTO);
         assertThat(testPaciente.getHistorialMedico()).isEqualTo(DEFAULT_HISTORIAL_MEDICO);
     }
@@ -189,6 +207,60 @@ class PacienteResourceIT {
 
     @Test
     @Transactional
+    void checkCarnetidentidadIsRequired() throws Exception {
+        int databaseSizeBeforeTest = pacienteRepository.findAll().size();
+        // set the field null
+        paciente.setCarnetidentidad(null);
+
+        // Create the Paciente, which fails.
+        PacienteDTO pacienteDTO = pacienteMapper.toDto(paciente);
+
+        restPacienteMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(pacienteDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Paciente> pacienteList = pacienteRepository.findAll();
+        assertThat(pacienteList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    void checkEmailIsRequired() throws Exception {
+        int databaseSizeBeforeTest = pacienteRepository.findAll().size();
+        // set the field null
+        paciente.setEmail(null);
+
+        // Create the Paciente, which fails.
+        PacienteDTO pacienteDTO = pacienteMapper.toDto(paciente);
+
+        restPacienteMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(pacienteDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Paciente> pacienteList = pacienteRepository.findAll();
+        assertThat(pacienteList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    void checkPasswordIsRequired() throws Exception {
+        int databaseSizeBeforeTest = pacienteRepository.findAll().size();
+        // set the field null
+        paciente.setPassword(null);
+
+        // Create the Paciente, which fails.
+        PacienteDTO pacienteDTO = pacienteMapper.toDto(paciente);
+
+        restPacienteMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(pacienteDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Paciente> pacienteList = pacienteRepository.findAll();
+        assertThat(pacienteList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void getAllPacientes() throws Exception {
         // Initialize the database
         pacienteRepository.saveAndFlush(paciente);
@@ -203,6 +275,9 @@ class PacienteResourceIT {
             .andExpect(jsonPath("$.[*].fechaNacimiento").value(hasItem(DEFAULT_FECHA_NACIMIENTO.toString())))
             .andExpect(jsonPath("$.[*].genero").value(hasItem(DEFAULT_GENERO)))
             .andExpect(jsonPath("$.[*].direccion").value(hasItem(DEFAULT_DIRECCION)))
+            .andExpect(jsonPath("$.[*].carnetidentidad").value(hasItem(DEFAULT_CARNETIDENTIDAD)))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
+            .andExpect(jsonPath("$.[*].password").value(hasItem(DEFAULT_PASSWORD)))
             .andExpect(jsonPath("$.[*].telefonoContacto").value(hasItem(DEFAULT_TELEFONO_CONTACTO)))
             .andExpect(jsonPath("$.[*].historialMedico").value(hasItem(DEFAULT_HISTORIAL_MEDICO)));
     }
@@ -223,6 +298,9 @@ class PacienteResourceIT {
             .andExpect(jsonPath("$.fechaNacimiento").value(DEFAULT_FECHA_NACIMIENTO.toString()))
             .andExpect(jsonPath("$.genero").value(DEFAULT_GENERO))
             .andExpect(jsonPath("$.direccion").value(DEFAULT_DIRECCION))
+            .andExpect(jsonPath("$.carnetidentidad").value(DEFAULT_CARNETIDENTIDAD))
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
+            .andExpect(jsonPath("$.password").value(DEFAULT_PASSWORD))
             .andExpect(jsonPath("$.telefonoContacto").value(DEFAULT_TELEFONO_CONTACTO))
             .andExpect(jsonPath("$.historialMedico").value(DEFAULT_HISTORIAL_MEDICO));
     }
@@ -251,6 +329,9 @@ class PacienteResourceIT {
             .fechaNacimiento(UPDATED_FECHA_NACIMIENTO)
             .genero(UPDATED_GENERO)
             .direccion(UPDATED_DIRECCION)
+            .carnetidentidad(UPDATED_CARNETIDENTIDAD)
+            .email(UPDATED_EMAIL)
+            .password(UPDATED_PASSWORD)
             .telefonoContacto(UPDATED_TELEFONO_CONTACTO)
             .historialMedico(UPDATED_HISTORIAL_MEDICO);
         PacienteDTO pacienteDTO = pacienteMapper.toDto(updatedPaciente);
@@ -271,6 +352,9 @@ class PacienteResourceIT {
         assertThat(testPaciente.getFechaNacimiento()).isEqualTo(UPDATED_FECHA_NACIMIENTO);
         assertThat(testPaciente.getGenero()).isEqualTo(UPDATED_GENERO);
         assertThat(testPaciente.getDireccion()).isEqualTo(UPDATED_DIRECCION);
+        assertThat(testPaciente.getCarnetidentidad()).isEqualTo(UPDATED_CARNETIDENTIDAD);
+        assertThat(testPaciente.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testPaciente.getPassword()).isEqualTo(UPDATED_PASSWORD);
         assertThat(testPaciente.getTelefonoContacto()).isEqualTo(UPDATED_TELEFONO_CONTACTO);
         assertThat(testPaciente.getHistorialMedico()).isEqualTo(UPDATED_HISTORIAL_MEDICO);
     }
@@ -355,8 +439,10 @@ class PacienteResourceIT {
         partialUpdatedPaciente
             .nombre(UPDATED_NOMBRE)
             .genero(UPDATED_GENERO)
-            .telefonoContacto(UPDATED_TELEFONO_CONTACTO)
-            .historialMedico(UPDATED_HISTORIAL_MEDICO);
+            .carnetidentidad(UPDATED_CARNETIDENTIDAD)
+            .email(UPDATED_EMAIL)
+            .password(UPDATED_PASSWORD)
+            .telefonoContacto(UPDATED_TELEFONO_CONTACTO);
 
         restPacienteMockMvc
             .perform(
@@ -374,8 +460,11 @@ class PacienteResourceIT {
         assertThat(testPaciente.getFechaNacimiento()).isEqualTo(DEFAULT_FECHA_NACIMIENTO);
         assertThat(testPaciente.getGenero()).isEqualTo(UPDATED_GENERO);
         assertThat(testPaciente.getDireccion()).isEqualTo(DEFAULT_DIRECCION);
+        assertThat(testPaciente.getCarnetidentidad()).isEqualTo(UPDATED_CARNETIDENTIDAD);
+        assertThat(testPaciente.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testPaciente.getPassword()).isEqualTo(UPDATED_PASSWORD);
         assertThat(testPaciente.getTelefonoContacto()).isEqualTo(UPDATED_TELEFONO_CONTACTO);
-        assertThat(testPaciente.getHistorialMedico()).isEqualTo(UPDATED_HISTORIAL_MEDICO);
+        assertThat(testPaciente.getHistorialMedico()).isEqualTo(DEFAULT_HISTORIAL_MEDICO);
     }
 
     @Test
@@ -395,6 +484,9 @@ class PacienteResourceIT {
             .fechaNacimiento(UPDATED_FECHA_NACIMIENTO)
             .genero(UPDATED_GENERO)
             .direccion(UPDATED_DIRECCION)
+            .carnetidentidad(UPDATED_CARNETIDENTIDAD)
+            .email(UPDATED_EMAIL)
+            .password(UPDATED_PASSWORD)
             .telefonoContacto(UPDATED_TELEFONO_CONTACTO)
             .historialMedico(UPDATED_HISTORIAL_MEDICO);
 
@@ -414,6 +506,9 @@ class PacienteResourceIT {
         assertThat(testPaciente.getFechaNacimiento()).isEqualTo(UPDATED_FECHA_NACIMIENTO);
         assertThat(testPaciente.getGenero()).isEqualTo(UPDATED_GENERO);
         assertThat(testPaciente.getDireccion()).isEqualTo(UPDATED_DIRECCION);
+        assertThat(testPaciente.getCarnetidentidad()).isEqualTo(UPDATED_CARNETIDENTIDAD);
+        assertThat(testPaciente.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testPaciente.getPassword()).isEqualTo(UPDATED_PASSWORD);
         assertThat(testPaciente.getTelefonoContacto()).isEqualTo(UPDATED_TELEFONO_CONTACTO);
         assertThat(testPaciente.getHistorialMedico()).isEqualTo(UPDATED_HISTORIAL_MEDICO);
     }

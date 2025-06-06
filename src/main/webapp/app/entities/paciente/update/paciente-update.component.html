@@ -69,6 +69,56 @@
         </div>
 
         <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.paciente.carnetidentidad" for="field_carnetidentidad">Carnetidentidad</label>
+          <input
+            type="text"
+            class="form-control"
+            name="carnetidentidad"
+            id="field_carnetidentidad"
+            data-cy="carnetidentidad"
+            formControlName="carnetidentidad"
+          />
+          <div
+            *ngIf="
+              editForm.get('carnetidentidad')!.invalid &&
+              (editForm.get('carnetidentidad')!.dirty || editForm.get('carnetidentidad')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('carnetidentidad')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.paciente.email" for="field_email">Email</label>
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+          <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.paciente.password" for="field_password">Password</label>
+          <input type="text" class="form-control" name="password" id="field_password" data-cy="password" formControlName="password" />
+          <div *ngIf="editForm.get('password')!.invalid && (editForm.get('password')!.dirty || editForm.get('password')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('password')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
           <label class="form-label" jhiTranslate="historiacApp.paciente.telefonoContacto" for="field_telefonoContacto"
             >Telefono Contacto</label
           >

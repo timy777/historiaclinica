@@ -45,6 +45,15 @@
           <th scope="col" jhiSortBy="direccion">
             <span jhiTranslate="historiacApp.paciente.direccion">Direccion</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="carnetidentidad">
+            <span jhiTranslate="historiacApp.paciente.carnetidentidad">Carnetidentidad</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="email">
+            <span jhiTranslate="historiacApp.paciente.email">Email</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="password">
+            <span jhiTranslate="historiacApp.paciente.password">Password</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="telefonoContacto">
             <span jhiTranslate="historiacApp.paciente.telefonoContacto">Telefono Contacto</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -63,6 +72,9 @@
           <td>{{ paciente.fechaNacimiento | formatMediumDate }}</td>
           <td>{{ paciente.genero }}</td>
           <td>{{ paciente.direccion }}</td>
+          <td>{{ paciente.carnetidentidad }}</td>
+          <td>{{ paciente.email }}</td>
+          <td>{{ paciente.password }}</td>
           <td>{{ paciente.telefonoContacto }}</td>
           <td>{{ paciente.historialMedico }}</td>
           <td class="text-end">

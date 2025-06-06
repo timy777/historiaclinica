@@ -24,6 +24,21 @@
       "fieldType": "String"
     },
     {
+      "fieldName": "carnetidentidad",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "password",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
       "fieldName": "telefonoContacto",
       "fieldType": "String"
     },

@@ -36,6 +36,18 @@ public class Paciente implements Serializable {
     @Column(name = "direccion")
     private String direccion;
 
+    @NotNull
+    @Column(name = "carnetidentidad", nullable = false)
+    private String carnetidentidad;
+
+    @NotNull
+    @Column(name = "email", nullable = false)
+    private String email;
+
+    @NotNull
+    @Column(name = "password", nullable = false)
+    private String password;
+
     @Column(name = "telefono_contacto")
     private String telefonoContacto;
 
@@ -118,6 +130,45 @@ public class Paciente implements Serializable {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public String getCarnetidentidad() {
+        return this.carnetidentidad;
+    }
+
+    public Paciente carnetidentidad(String carnetidentidad) {
+        this.setCarnetidentidad(carnetidentidad);
+        return this;
+    }
+
+    public void setCarnetidentidad(String carnetidentidad) {
+        this.carnetidentidad = carnetidentidad;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public Paciente email(String email) {
+        this.setEmail(email);
+        return this;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public Paciente password(String password) {
+        this.setPassword(password);
+        return this;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getTelefonoContacto() {
@@ -236,6 +287,9 @@ public class Paciente implements Serializable {
             ", fechaNacimiento='" + getFechaNacimiento() + "'" +
             ", genero='" + getGenero() + "'" +
             ", direccion='" + getDireccion() + "'" +
+            ", carnetidentidad='" + getCarnetidentidad() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", password='" + getPassword() + "'" +
             ", telefonoContacto='" + getTelefonoContacto() + "'" +
             ", historialMedico='" + getHistorialMedico() + "'" +
             "}";

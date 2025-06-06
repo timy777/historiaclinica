@@ -8,6 +8,9 @@ export interface IPaciente {
   fechaNacimiento?: dayjs.Dayjs;
   genero?: string | null;
   direccion?: string | null;
+  carnetidentidad?: string;
+  email?: string;
+  password?: string;
   telefonoContacto?: string | null;
   historialMedico?: string | null;
   citaMedicas?: ICitaMedica[] | null;
@@ -21,6 +24,9 @@ export class Paciente implements IPaciente {
     public fechaNacimiento?: dayjs.Dayjs,
     public genero?: string | null,
     public direccion?: string | null,
+    public carnetidentidad?: string,
+    public email?: string,
+    public password?: string,
     public telefonoContacto?: string | null,
     public historialMedico?: string | null,
     public citaMedicas?: ICitaMedica[] | null,

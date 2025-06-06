@@ -50,7 +50,7 @@
     "serviceDiscoveryType": "eureka",
     "skipCheckLengthOfIdentifier": false,
     "skipFakeData": false,
-    "skipUserManagement": false,
+    "skipUserManagement": true,
     "testFrameworks": [],
     "websocket": false,
     "withAdminUi": true
