@@ -54,16 +54,29 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityName": "consultaMedica",
+      "otherEntityRelationshipName": "paciente",
+      "relationshipName": "consultaMedica",
+      "relationshipType": "one-to-many"
+    },
+    {
       "otherEntityName": "citaMedica",
       "otherEntityRelationshipName": "paciente",
       "relationshipName": "citaMedica",
       "relationshipType": "one-to-many"
     },
     {
-      "otherEntityName": "consultaMedica",
+      "otherEntityName": "procesoMedico",
       "otherEntityRelationshipName": "paciente",
-      "relationshipName": "consultaMedica",
+      "relationshipName": "procesoMedico",
       "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "personalMedico",
+      "otherEntityRelationshipName": "paciente",
+      "ownerSide": false,
+      "relationshipName": "personalMedico",
+      "relationshipType": "many-to-many"
     }
   ],
   "service": "serviceClass"

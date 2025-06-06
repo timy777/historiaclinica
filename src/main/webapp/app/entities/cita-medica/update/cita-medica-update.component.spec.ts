@@ -10,6 +10,8 @@ import { CitaMedicaService } from '../service/cita-medica.service';
 import { ICitaMedica, CitaMedica } from '../cita-medica.model';
 import { IPaciente } from 'app/entities/paciente/paciente.model';
 import { PacienteService } from 'app/entities/paciente/service/paciente.service';
+import { IPersonalMedico } from 'app/entities/personal-medico/personal-medico.model';
+import { PersonalMedicoService } from 'app/entities/personal-medico/service/personal-medico.service';
 
 import { CitaMedicaUpdateComponent } from './cita-medica-update.component';
 
@@ -19,6 +21,7 @@ describe('CitaMedica Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let citaMedicaService: CitaMedicaService;
   let pacienteService: PacienteService;
+  let personalMedicoService: PersonalMedicoService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -41,6 +44,7 @@ describe('CitaMedica Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     citaMedicaService = TestBed.inject(CitaMedicaService);
     pacienteService = TestBed.inject(PacienteService);
+    personalMedicoService = TestBed.inject(PersonalMedicoService);
 
     comp = fixture.componentInstance;
   });
@@ -65,16 +69,41 @@ describe('CitaMedica Management Update Component', () => {
       expect(comp.pacientesSharedCollection).toEqual(expectedCollection);
     });
 
+    it('Should call PersonalMedico query and add missing value', () => {
+      const citaMedica: ICitaMedica = { id: 456 };
+      const personalMedico: IPersonalMedico = { id: 96723 };
+      citaMedica.personalMedico = personalMedico;
+
+      const personalMedicoCollection: IPersonalMedico[] = [{ id: 80137 }];
+      jest.spyOn(personalMedicoService, 'query').mockReturnValue(of(new HttpResponse({ body: personalMedicoCollection })));
+      const additionalPersonalMedicos = [personalMedico];
+      const expectedCollection: IPersonalMedico[] = [...additionalPersonalMedicos, ...personalMedicoCollection];
+      jest.spyOn(personalMedicoService, 'addPersonalMedicoToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ citaMedica });
+      comp.ngOnInit();
+
+      expect(personalMedicoService.query).toHaveBeenCalled();
+      expect(personalMedicoService.addPersonalMedicoToCollectionIfMissing).toHaveBeenCalledWith(
+        personalMedicoCollection,
+        ...additionalPersonalMedicos
+      );
+      expect(comp.personalMedicosSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should update editForm', () => {
       const citaMedica: ICitaMedica = { id: 456 };
       const paciente: IPaciente = { id: 44100 };
       citaMedica.paciente = paciente;
+      const personalMedico: IPersonalMedico = { id: 79225 };
+      citaMedica.personalMedico = personalMedico;
 
       activatedRoute.data = of({ citaMedica });
       comp.ngOnInit();
 
       expect(comp.editForm.value).toEqual(expect.objectContaining(citaMedica));
       expect(comp.pacientesSharedCollection).toContain(paciente);
+      expect(comp.personalMedicosSharedCollection).toContain(personalMedico);
     });
   });
 
@@ -147,6 +176,14 @@ describe('CitaMedica Management Update Component', () => {
       it('Should return tracked Paciente primary key', () => {
         const entity = { id: 123 };
         const trackResult = comp.trackPacienteById(0, entity);
+        expect(trackResult).toEqual(entity.id);
+      });
+    });
+
+    describe('trackPersonalMedicoById', () => {
+      it('Should return tracked PersonalMedico primary key', () => {
+        const entity = { id: 123 };
+        const trackResult = comp.trackPersonalMedicoById(0, entity);
         expect(trackResult).toEqual(entity.id);
       });
     });

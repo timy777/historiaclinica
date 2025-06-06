@@ -45,6 +45,15 @@
           <th scope="col" jhiSortBy="estado">
             <span jhiTranslate="historiacApp.procesoMedico.estado">Estado</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="paciente.id">
+            <span jhiTranslate="historiacApp.procesoMedico.paciente">Paciente</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="personalMedico.id">
+            <span jhiTranslate="historiacApp.procesoMedico.personalMedico">Personal Medico</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="salaMedica.id">
+            <span jhiTranslate="historiacApp.procesoMedico.salaMedica">Sala Medica</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -57,6 +66,21 @@
           <td>{{ procesoMedico.fechaInicio | formatMediumDatetime }}</td>
           <td>{{ procesoMedico.fechaFin | formatMediumDatetime }}</td>
           <td>{{ procesoMedico.estado }}</td>
+          <td>
+            <div *ngIf="procesoMedico.paciente">
+              <a [routerLink]="['/paciente', procesoMedico.paciente?.id, 'view']">{{ procesoMedico.paciente?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="procesoMedico.personalMedico">
+              <a [routerLink]="['/personal-medico', procesoMedico.personalMedico?.id, 'view']">{{ procesoMedico.personalMedico?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="procesoMedico.salaMedica">
+              <a [routerLink]="['/sala-medica', procesoMedico.salaMedica?.id, 'view']">{{ procesoMedico.salaMedica?.id }}</a>
+            </div>
+          </td>
           <td class="text-end">
             <div class="btn-group">
               <button

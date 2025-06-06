@@ -1,4 +1,7 @@
 import { IConsultaMedica } from 'app/entities/consulta-medica/consulta-medica.model';
+import { IPaciente } from 'app/entities/paciente/paciente.model';
+import { ICitaMedica } from 'app/entities/cita-medica/cita-medica.model';
+import { IProcesoMedico } from 'app/entities/proceso-medico/proceso-medico.model';
 
 export interface IPersonalMedico {
   id?: number;
@@ -8,6 +11,9 @@ export interface IPersonalMedico {
   correo?: string | null;
   licenciaMedica?: string | null;
   consultaMedicas?: IConsultaMedica[] | null;
+  pacientes?: IPaciente[] | null;
+  citaMedicas?: ICitaMedica[] | null;
+  procesoMedicos?: IProcesoMedico[] | null;
 }
 
 export class PersonalMedico implements IPersonalMedico {
@@ -18,7 +24,10 @@ export class PersonalMedico implements IPersonalMedico {
     public telefonoContacto?: string | null,
     public correo?: string | null,
     public licenciaMedica?: string | null,
-    public consultaMedicas?: IConsultaMedica[] | null
+    public consultaMedicas?: IConsultaMedica[] | null,
+    public pacientes?: IPaciente[] | null,
+    public citaMedicas?: ICitaMedica[] | null,
+    public procesoMedicos?: IProcesoMedico[] | null
   ) {}
 }
 

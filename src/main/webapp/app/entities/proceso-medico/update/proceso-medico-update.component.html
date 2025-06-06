@@ -93,6 +93,59 @@
             </small>
           </div>
         </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.procesoMedico.paciente" for="field_paciente">Paciente</label>
+          <select class="form-control" id="field_paciente" data-cy="paciente" name="paciente" formControlName="paciente">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="pacienteOption.id === editForm.get('paciente')!.value?.id ? editForm.get('paciente')!.value : pacienteOption"
+              *ngFor="let pacienteOption of pacientesSharedCollection; trackBy: trackPacienteById"
+            >
+              {{ pacienteOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.procesoMedico.personalMedico" for="field_personalMedico"
+            >Personal Medico</label
+          >
+          <select
+            class="form-control"
+            id="field_personalMedico"
+            data-cy="personalMedico"
+            name="personalMedico"
+            formControlName="personalMedico"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                personalMedicoOption.id === editForm.get('personalMedico')!.value?.id
+                  ? editForm.get('personalMedico')!.value
+                  : personalMedicoOption
+              "
+              *ngFor="let personalMedicoOption of personalMedicosSharedCollection; trackBy: trackPersonalMedicoById"
+            >
+              {{ personalMedicoOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.procesoMedico.salaMedica" for="field_salaMedica">Sala Medica</label>
+          <select class="form-control" id="field_salaMedica" data-cy="salaMedica" name="salaMedica" formControlName="salaMedica">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                salaMedicaOption.id === editForm.get('salaMedica')!.value?.id ? editForm.get('salaMedica')!.value : salaMedicaOption
+              "
+              *ngFor="let salaMedicaOption of salaMedicasSharedCollection; trackBy: trackSalaMedicaById"
+            >
+              {{ salaMedicaOption.id }}
+            </option>
+          </select>
+        </div>
       </div>
 
       <div>

@@ -36,8 +36,12 @@ public class CitaMedica implements Serializable {
     private String estado;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "citaMedicas", "consultaMedicas" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "consultaMedicas", "citaMedicas", "procesoMedicos", "personalMedicos" }, allowSetters = true)
     private Paciente paciente;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "consultaMedicas", "pacientes", "citaMedicas", "procesoMedicos" }, allowSetters = true)
+    private PersonalMedico personalMedico;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -116,6 +120,19 @@ public class CitaMedica implements Serializable {
 
     public CitaMedica paciente(Paciente paciente) {
         this.setPaciente(paciente);
+        return this;
+    }
+
+    public PersonalMedico getPersonalMedico() {
+        return this.personalMedico;
+    }
+
+    public void setPersonalMedico(PersonalMedico personalMedico) {
+        this.personalMedico = personalMedico;
+    }
+
+    public CitaMedica personalMedico(PersonalMedico personalMedico) {
+        this.setPersonalMedico(personalMedico);
         return this;
     }
 

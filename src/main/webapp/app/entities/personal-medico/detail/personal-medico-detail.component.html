@@ -34,6 +34,13 @@
         <dd>
           <span>{{ personalMedico.licenciaMedica }}</span>
         </dd>
+        <dt><span jhiTranslate="historiacApp.personalMedico.paciente">Paciente</span></dt>
+        <dd>
+          <span *ngFor="let paciente of personalMedico.pacientes; let last = last">
+            <a [routerLink]="['/paciente', paciente?.id, 'view']">{{ paciente.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

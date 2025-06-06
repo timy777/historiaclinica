@@ -21,7 +21,10 @@
       "tipoProceso": "Tipo Proceso",
       "fechaInicio": "Fecha Inicio",
       "fechaFin": "Fecha Fin",
-      "estado": "Estado"
+      "estado": "Estado",
+      "paciente": "Paciente",
+      "personalMedico": "Personal Medico",
+      "salaMedica": "Sala Medica"
     }
   }
 }

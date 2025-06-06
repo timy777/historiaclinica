@@ -25,6 +25,8 @@ public class CitaMedicaDTO implements Serializable {
 
     private PacienteDTO paciente;
 
+    private PersonalMedicoDTO personalMedico;
+
     public Long getId() {
         return id;
     }
@@ -73,6 +75,14 @@ public class CitaMedicaDTO implements Serializable {
         this.paciente = paciente;
     }
 
+    public PersonalMedicoDTO getPersonalMedico() {
+        return personalMedico;
+    }
+
+    public void setPersonalMedico(PersonalMedicoDTO personalMedico) {
+        this.personalMedico = personalMedico;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -104,6 +114,7 @@ public class CitaMedicaDTO implements Serializable {
             ", motivo='" + getMotivo() + "'" +
             ", estado='" + getEstado() + "'" +
             ", paciente=" + getPaciente() +
+            ", personalMedico=" + getPersonalMedico() +
             "}";
     }
 }

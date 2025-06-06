@@ -2,22 +2,30 @@ package com.historiac.web.rest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.historiac.IntegrationTest;
 import com.historiac.domain.PersonalMedico;
 import com.historiac.repository.PersonalMedicoRepository;
+import com.historiac.service.PersonalMedicoService;
 import com.historiac.service.dto.PersonalMedicoDTO;
 import com.historiac.service.mapper.PersonalMedicoMapper;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 import javax.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -27,6 +35,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Integration tests for the {@link PersonalMedicoResource} REST controller.
  */
 @IntegrationTest
+@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 class PersonalMedicoResourceIT {
@@ -55,8 +64,14 @@ class PersonalMedicoResourceIT {
     @Autowired
     private PersonalMedicoRepository personalMedicoRepository;
 
+    @Mock
+    private PersonalMedicoRepository personalMedicoRepositoryMock;
+
     @Autowired
     private PersonalMedicoMapper personalMedicoMapper;
+
+    @Mock
+    private PersonalMedicoService personalMedicoServiceMock;
 
     @Autowired
     private EntityManager em;
@@ -184,6 +199,24 @@ class PersonalMedicoResourceIT {
             .andExpect(jsonPath("$.[*].telefonoContacto").value(hasItem(DEFAULT_TELEFONO_CONTACTO)))
             .andExpect(jsonPath("$.[*].correo").value(hasItem(DEFAULT_CORREO)))
             .andExpect(jsonPath("$.[*].licenciaMedica").value(hasItem(DEFAULT_LICENCIA_MEDICA)));
+    }
+
+    @SuppressWarnings({ "unchecked" })
+    void getAllPersonalMedicosWithEagerRelationshipsIsEnabled() throws Exception {
+        when(personalMedicoServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restPersonalMedicoMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
+
+        verify(personalMedicoServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({ "unchecked" })
+    void getAllPersonalMedicosWithEagerRelationshipsIsNotEnabled() throws Exception {
+        when(personalMedicoServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restPersonalMedicoMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
+
+        verify(personalMedicoServiceMock, times(1)).findAllWithEagerRelationships(any());
     }
 
     @Test

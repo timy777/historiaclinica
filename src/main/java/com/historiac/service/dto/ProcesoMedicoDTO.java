@@ -23,6 +23,12 @@ public class ProcesoMedicoDTO implements Serializable {
     @NotNull
     private String estado;
 
+    private PacienteDTO paciente;
+
+    private PersonalMedicoDTO personalMedico;
+
+    private SalaMedicaDTO salaMedica;
+
     public Long getId() {
         return id;
     }
@@ -63,6 +69,30 @@ public class ProcesoMedicoDTO implements Serializable {
         this.estado = estado;
     }
 
+    public PacienteDTO getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(PacienteDTO paciente) {
+        this.paciente = paciente;
+    }
+
+    public PersonalMedicoDTO getPersonalMedico() {
+        return personalMedico;
+    }
+
+    public void setPersonalMedico(PersonalMedicoDTO personalMedico) {
+        this.personalMedico = personalMedico;
+    }
+
+    public SalaMedicaDTO getSalaMedica() {
+        return salaMedica;
+    }
+
+    public void setSalaMedica(SalaMedicaDTO salaMedica) {
+        this.salaMedica = salaMedica;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -93,6 +123,9 @@ public class ProcesoMedicoDTO implements Serializable {
             ", fechaInicio='" + getFechaInicio() + "'" +
             ", fechaFin='" + getFechaFin() + "'" +
             ", estado='" + getEstado() + "'" +
+            ", paciente=" + getPaciente() +
+            ", personalMedico=" + getPersonalMedico() +
+            ", salaMedica=" + getSalaMedica() +
             "}";
     }
 }

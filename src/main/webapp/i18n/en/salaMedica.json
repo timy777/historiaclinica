@@ -21,7 +21,8 @@
       "nroSala": "Nro Sala",
       "nombre": "Nombre",
       "ubicacion": "Ubicacion",
-      "equipamiento": "Equipamiento"
+      "equipamiento": "Equipamiento",
+      "procesoMedico": "Proceso Medico"
     }
   }
 }

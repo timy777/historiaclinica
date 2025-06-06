@@ -32,6 +32,8 @@
     <include file="config/liquibase/changelog/20250605001943_added_entity_constraints_Medicacion.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20250605001944_added_entity_constraints_Tratamiento.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20250605001945_added_entity_constraints_EstudioMedico.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250605001937_added_entity_constraints_ProcesoMedico.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250605001938_added_entity_constraints_PersonalMedico.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

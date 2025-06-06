@@ -48,6 +48,9 @@
           <th scope="col" jhiSortBy="paciente.id">
             <span jhiTranslate="historiacApp.citaMedica.paciente">Paciente</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="personalMedico.id">
+            <span jhiTranslate="historiacApp.citaMedica.personalMedico">Personal Medico</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -63,6 +66,11 @@
           <td>
             <div *ngIf="citaMedica.paciente">
               <a [routerLink]="['/paciente', citaMedica.paciente?.id, 'view']">{{ citaMedica.paciente?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="citaMedica.personalMedico">
+              <a [routerLink]="['/personal-medico', citaMedica.personalMedico?.id, 'view']">{{ citaMedica.personalMedico?.id }}</a>
             </div>
           </td>
           <td class="text-end">

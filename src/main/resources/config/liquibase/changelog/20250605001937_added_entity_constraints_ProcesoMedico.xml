@@ -4,20 +4,26 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
     <!--
-        Added the constraints for entity CitaMedica.
+        Added the constraints for entity ProcesoMedico.
     -->
-    <changeSet id="20250605001940-2" author="jhipster">
+    <changeSet id="20250605001937-2" author="jhipster">
 
         <addForeignKeyConstraint baseColumnNames="paciente_id"
-                                 baseTableName="cita_medica"
-                                 constraintName="fk_cita_medica__paciente_id"
+                                 baseTableName="proceso_medico"
+                                 constraintName="fk_proceso_medico__paciente_id"
                                  referencedColumnNames="id"
                                  referencedTableName="paciente"/>
 
         <addForeignKeyConstraint baseColumnNames="personal_medico_id"
-                                 baseTableName="cita_medica"
-                                 constraintName="fk_cita_medica__personal_medico_id"
+                                 baseTableName="proceso_medico"
+                                 constraintName="fk_proceso_medico__personal_medico_id"
                                  referencedColumnNames="id"
                                  referencedTableName="personal_medico"/>
+
+        <addForeignKeyConstraint baseColumnNames="sala_medica_id"
+                                 baseTableName="proceso_medico"
+                                 constraintName="fk_proceso_medico__sala_medica_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sala_medica"/>
     </changeSet>
 </databaseChangeLog>

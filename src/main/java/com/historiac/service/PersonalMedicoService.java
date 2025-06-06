@@ -89,6 +89,15 @@ public class PersonalMedicoService {
     }
 
     /**
+     * Get all the personalMedicos with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    public Page<PersonalMedicoDTO> findAllWithEagerRelationships(Pageable pageable) {
+        return personalMedicoRepository.findAllWithEagerRelationships(pageable).map(personalMedicoMapper::toDto);
+    }
+
+    /**
      * Get one personalMedico by id.
      *
      * @param id the id of the entity.
@@ -97,7 +106,7 @@ public class PersonalMedicoService {
     @Transactional(readOnly = true)
     public Optional<PersonalMedicoDTO> findOne(Long id) {
         log.debug("Request to get PersonalMedico : {}", id);
-        return personalMedicoRepository.findById(id).map(personalMedicoMapper::toDto);
+        return personalMedicoRepository.findOneWithEagerRelationships(id).map(personalMedicoMapper::toDto);
     }
 
     /**

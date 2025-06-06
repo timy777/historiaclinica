@@ -1,6 +1,8 @@
 import dayjs from 'dayjs/esm';
-import { ICitaMedica } from 'app/entities/cita-medica/cita-medica.model';
 import { IConsultaMedica } from 'app/entities/consulta-medica/consulta-medica.model';
+import { ICitaMedica } from 'app/entities/cita-medica/cita-medica.model';
+import { IProcesoMedico } from 'app/entities/proceso-medico/proceso-medico.model';
+import { IPersonalMedico } from 'app/entities/personal-medico/personal-medico.model';
 
 export interface IPaciente {
   id?: number;
@@ -13,8 +15,10 @@ export interface IPaciente {
   password?: string;
   telefonoContacto?: string | null;
   historialMedico?: string | null;
-  citaMedicas?: ICitaMedica[] | null;
   consultaMedicas?: IConsultaMedica[] | null;
+  citaMedicas?: ICitaMedica[] | null;
+  procesoMedicos?: IProcesoMedico[] | null;
+  personalMedicos?: IPersonalMedico[] | null;
 }
 
 export class Paciente implements IPaciente {
@@ -29,8 +33,10 @@ export class Paciente implements IPaciente {
     public password?: string,
     public telefonoContacto?: string | null,
     public historialMedico?: string | null,
+    public consultaMedicas?: IConsultaMedica[] | null,
     public citaMedicas?: ICitaMedica[] | null,
-    public consultaMedicas?: IConsultaMedica[] | null
+    public procesoMedicos?: IProcesoMedico[] | null,
+    public personalMedicos?: IPersonalMedico[] | null
   ) {}
 }
 

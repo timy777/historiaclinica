@@ -30,6 +30,25 @@
   "name": "ProcesoMedico",
   "pagination": "pagination",
   "readOnly": false,
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityName": "paciente",
+      "otherEntityRelationshipName": "procesoMedico",
+      "relationshipName": "paciente",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "personalMedico",
+      "otherEntityRelationshipName": "procesoMedico",
+      "relationshipName": "personalMedico",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "salaMedica",
+      "otherEntityRelationshipName": "procesoMedico",
+      "relationshipName": "salaMedica",
+      "relationshipType": "many-to-one"
+    }
+  ],
   "service": "serviceClass"
 }

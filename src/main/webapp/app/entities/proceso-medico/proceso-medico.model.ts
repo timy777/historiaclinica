@@ -1,4 +1,7 @@
 import dayjs from 'dayjs/esm';
+import { IPaciente } from 'app/entities/paciente/paciente.model';
+import { IPersonalMedico } from 'app/entities/personal-medico/personal-medico.model';
+import { ISalaMedica } from 'app/entities/sala-medica/sala-medica.model';
 
 export interface IProcesoMedico {
   id?: number;
@@ -6,6 +9,9 @@ export interface IProcesoMedico {
   fechaInicio?: dayjs.Dayjs;
   fechaFin?: dayjs.Dayjs | null;
   estado?: string;
+  paciente?: IPaciente | null;
+  personalMedico?: IPersonalMedico | null;
+  salaMedica?: ISalaMedica | null;
 }
 
 export class ProcesoMedico implements IProcesoMedico {
@@ -14,7 +20,10 @@ export class ProcesoMedico implements IProcesoMedico {
     public tipoProceso?: string,
     public fechaInicio?: dayjs.Dayjs,
     public fechaFin?: dayjs.Dayjs | null,
-    public estado?: string
+    public estado?: string,
+    public paciente?: IPaciente | null,
+    public personalMedico?: IPersonalMedico | null,
+    public salaMedica?: ISalaMedica | null
   ) {}
 }
 

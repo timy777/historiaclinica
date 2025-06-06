@@ -143,12 +143,21 @@ public class PersonalMedicoResource {
      * {@code GET  /personal-medicos} : get all the personalMedicos.
      *
      * @param pageable the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of personalMedicos in body.
      */
     @GetMapping("/personal-medicos")
-    public ResponseEntity<List<PersonalMedicoDTO>> getAllPersonalMedicos(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
+    public ResponseEntity<List<PersonalMedicoDTO>> getAllPersonalMedicos(
+        @org.springdoc.api.annotations.ParameterObject Pageable pageable,
+        @RequestParam(required = false, defaultValue = "true") boolean eagerload
+    ) {
         log.debug("REST request to get a page of PersonalMedicos");
-        Page<PersonalMedicoDTO> page = personalMedicoService.findAll(pageable);
+        Page<PersonalMedicoDTO> page;
+        if (eagerload) {
+            page = personalMedicoService.findAllWithEagerRelationships(pageable);
+        } else {
+            page = personalMedicoService.findAll(pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

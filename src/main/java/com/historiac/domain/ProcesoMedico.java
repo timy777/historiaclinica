@@ -1,5 +1,6 @@
 package com.historiac.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.Instant;
 import javax.persistence.*;
@@ -33,6 +34,18 @@ public class ProcesoMedico implements Serializable {
     @NotNull
     @Column(name = "estado", nullable = false)
     private String estado;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "consultaMedicas", "citaMedicas", "procesoMedicos", "personalMedicos" }, allowSetters = true)
+    private Paciente paciente;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "consultaMedicas", "pacientes", "citaMedicas", "procesoMedicos" }, allowSetters = true)
+    private PersonalMedico personalMedico;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "procesoMedicos" }, allowSetters = true)
+    private SalaMedica salaMedica;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -99,6 +112,45 @@ public class ProcesoMedico implements Serializable {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Paciente getPaciente() {
+        return this.paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    public ProcesoMedico paciente(Paciente paciente) {
+        this.setPaciente(paciente);
+        return this;
+    }
+
+    public PersonalMedico getPersonalMedico() {
+        return this.personalMedico;
+    }
+
+    public void setPersonalMedico(PersonalMedico personalMedico) {
+        this.personalMedico = personalMedico;
+    }
+
+    public ProcesoMedico personalMedico(PersonalMedico personalMedico) {
+        this.setPersonalMedico(personalMedico);
+        return this;
+    }
+
+    public SalaMedica getSalaMedica() {
+        return this.salaMedica;
+    }
+
+    public void setSalaMedica(SalaMedica salaMedica) {
+        this.salaMedica = salaMedica;
+    }
+
+    public ProcesoMedico salaMedica(SalaMedica salaMedica) {
+        this.setSalaMedica(salaMedica);
+        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

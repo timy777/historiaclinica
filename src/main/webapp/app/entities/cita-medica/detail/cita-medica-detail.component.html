@@ -36,6 +36,12 @@
             <a [routerLink]="['/paciente', citaMedica.paciente?.id, 'view']">{{ citaMedica.paciente?.id }}</a>
           </div>
         </dd>
+        <dt><span jhiTranslate="historiacApp.citaMedica.personalMedico">Personal Medico</span></dt>
+        <dd>
+          <div *ngIf="citaMedica.personalMedico">
+            <a [routerLink]="['/personal-medico', citaMedica.personalMedico?.id, 'view']">{{ citaMedica.personalMedico?.id }}</a>
+          </div>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

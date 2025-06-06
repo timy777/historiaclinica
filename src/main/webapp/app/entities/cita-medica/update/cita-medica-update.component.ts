@@ -9,6 +9,8 @@ import { ICitaMedica, CitaMedica } from '../cita-medica.model';
 import { CitaMedicaService } from '../service/cita-medica.service';
 import { IPaciente } from 'app/entities/paciente/paciente.model';
 import { PacienteService } from 'app/entities/paciente/service/paciente.service';
+import { IPersonalMedico } from 'app/entities/personal-medico/personal-medico.model';
+import { PersonalMedicoService } from 'app/entities/personal-medico/service/personal-medico.service';
 
 @Component({
   selector: 'jhi-cita-medica-update',
@@ -18,6 +20,7 @@ export class CitaMedicaUpdateComponent implements OnInit {
   isSaving = false;
 
   pacientesSharedCollection: IPaciente[] = [];
+  personalMedicosSharedCollection: IPersonalMedico[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -26,11 +29,13 @@ export class CitaMedicaUpdateComponent implements OnInit {
     motivo: [],
     estado: [null, [Validators.required]],
     paciente: [],
+    personalMedico: [],
   });
 
   constructor(
     protected citaMedicaService: CitaMedicaService,
     protected pacienteService: PacienteService,
+    protected personalMedicoService: PersonalMedicoService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
   ) {}
@@ -61,6 +66,10 @@ export class CitaMedicaUpdateComponent implements OnInit {
     return item.id!;
   }
 
+  trackPersonalMedicoById(_index: number, item: IPersonalMedico): number {
+    return item.id!;
+  }
+
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ICitaMedica>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
       next: () => this.onSaveSuccess(),
@@ -88,11 +97,16 @@ export class CitaMedicaUpdateComponent implements OnInit {
       motivo: citaMedica.motivo,
       estado: citaMedica.estado,
       paciente: citaMedica.paciente,
+      personalMedico: citaMedica.personalMedico,
     });
 
     this.pacientesSharedCollection = this.pacienteService.addPacienteToCollectionIfMissing(
       this.pacientesSharedCollection,
       citaMedica.paciente
+    );
+    this.personalMedicosSharedCollection = this.personalMedicoService.addPersonalMedicoToCollectionIfMissing(
+      this.personalMedicosSharedCollection,
+      citaMedica.personalMedico
     );
   }
 
@@ -106,6 +120,16 @@ export class CitaMedicaUpdateComponent implements OnInit {
         )
       )
       .subscribe((pacientes: IPaciente[]) => (this.pacientesSharedCollection = pacientes));
+
+    this.personalMedicoService
+      .query()
+      .pipe(map((res: HttpResponse<IPersonalMedico[]>) => res.body ?? []))
+      .pipe(
+        map((personalMedicos: IPersonalMedico[]) =>
+          this.personalMedicoService.addPersonalMedicoToCollectionIfMissing(personalMedicos, this.editForm.get('personalMedico')!.value)
+        )
+      )
+      .subscribe((personalMedicos: IPersonalMedico[]) => (this.personalMedicosSharedCollection = personalMedicos));
   }
 
   protected createFromForm(): ICitaMedica {
@@ -117,6 +141,7 @@ export class CitaMedicaUpdateComponent implements OnInit {
       motivo: this.editForm.get(['motivo'])!.value,
       estado: this.editForm.get(['estado'])!.value,
       paciente: this.editForm.get(['paciente'])!.value,
+      personalMedico: this.editForm.get(['personalMedico'])!.value,
     };
   }
 }

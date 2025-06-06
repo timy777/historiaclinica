@@ -22,7 +22,8 @@
       "horaCita": "Hora Cita",
       "motivo": "Motivo",
       "estado": "Estado",
-      "paciente": "Paciente"
+      "paciente": "Paciente",
+      "personalMedico": "Personal Medico"
     }
   }
 }

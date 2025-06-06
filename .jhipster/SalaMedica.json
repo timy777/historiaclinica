@@ -29,6 +29,13 @@
   "name": "SalaMedica",
   "pagination": "pagination",
   "readOnly": false,
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityName": "procesoMedico",
+      "otherEntityRelationshipName": "salaMedica",
+      "relationshipName": "procesoMedico",
+      "relationshipType": "one-to-many"
+    }
+  ],
   "service": "serviceClass"
 }

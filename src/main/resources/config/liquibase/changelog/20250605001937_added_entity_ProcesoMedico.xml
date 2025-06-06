@@ -26,6 +26,15 @@
             <column name="estado" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
+            <column name="paciente_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="personal_medico_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="sala_medica_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
         <dropDefaultValue tableName="proceso_medico" columnName="fecha_inicio" columnDataType="${datetimeType}"/>

@@ -36,6 +36,12 @@
       "otherEntityRelationshipName": "citaMedica",
       "relationshipName": "paciente",
       "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "personalMedico",
+      "otherEntityRelationshipName": "citaMedica",
+      "relationshipName": "personalMedico",
+      "relationshipType": "many-to-one"
     }
   ],
   "service": "serviceClass"

@@ -38,6 +38,25 @@
       "otherEntityRelationshipName": "personalMedico",
       "relationshipName": "consultaMedica",
       "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "paciente",
+      "otherEntityRelationshipName": "personalMedico",
+      "ownerSide": true,
+      "relationshipName": "paciente",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "citaMedica",
+      "otherEntityRelationshipName": "personalMedico",
+      "relationshipName": "citaMedica",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "procesoMedico",
+      "otherEntityRelationshipName": "personalMedico",
+      "relationshipName": "procesoMedico",
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceClass"

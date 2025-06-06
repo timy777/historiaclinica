@@ -27,8 +27,10 @@
       "password": "Password",
       "telefonoContacto": "Telefono Contacto",
       "historialMedico": "Historial Medico",
+      "consultaMedica": "Consulta Medica",
       "citaMedica": "Cita Medica",
-      "consultaMedica": "Consulta Medica"
+      "procesoMedico": "Proceso Medico",
+      "personalMedico": "Personal Medico"
     }
   }
 }

@@ -3,10 +3,12 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 
 import { IPersonalMedico, PersonalMedico } from '../personal-medico.model';
 import { PersonalMedicoService } from '../service/personal-medico.service';
+import { IPaciente } from 'app/entities/paciente/paciente.model';
+import { PacienteService } from 'app/entities/paciente/service/paciente.service';
 
 @Component({
   selector: 'jhi-personal-medico-update',
@@ -15,6 +17,8 @@ import { PersonalMedicoService } from '../service/personal-medico.service';
 export class PersonalMedicoUpdateComponent implements OnInit {
   isSaving = false;
 
+  pacientesSharedCollection: IPaciente[] = [];
+
   editForm = this.fb.group({
     id: [],
     nombre: [null, [Validators.required]],
@@ -22,10 +26,12 @@ export class PersonalMedicoUpdateComponent implements OnInit {
     telefonoContacto: [],
     correo: [],
     licenciaMedica: [],
+    pacientes: [],
   });
 
   constructor(
     protected personalMedicoService: PersonalMedicoService,
+    protected pacienteService: PacienteService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
   ) {}
@@ -33,6 +39,8 @@ export class PersonalMedicoUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ personalMedico }) => {
       this.updateForm(personalMedico);
+
+      this.loadRelationshipsOptions();
     });
   }
 
@@ -48,6 +56,21 @@ export class PersonalMedicoUpdateComponent implements OnInit {
     } else {
       this.subscribeToSaveResponse(this.personalMedicoService.create(personalMedico));
     }
+  }
+
+  trackPacienteById(_index: number, item: IPaciente): number {
+    return item.id!;
+  }
+
+  getSelectedPaciente(option: IPaciente, selectedVals?: IPaciente[]): IPaciente {
+    if (selectedVals) {
+      for (const selectedVal of selectedVals) {
+        if (option.id === selectedVal.id) {
+          return selectedVal;
+        }
+      }
+    }
+    return option;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IPersonalMedico>>): void {
@@ -77,7 +100,25 @@ export class PersonalMedicoUpdateComponent implements OnInit {
       telefonoContacto: personalMedico.telefonoContacto,
       correo: personalMedico.correo,
       licenciaMedica: personalMedico.licenciaMedica,
+      pacientes: personalMedico.pacientes,
     });
+
+    this.pacientesSharedCollection = this.pacienteService.addPacienteToCollectionIfMissing(
+      this.pacientesSharedCollection,
+      ...(personalMedico.pacientes ?? [])
+    );
+  }
+
+  protected loadRelationshipsOptions(): void {
+    this.pacienteService
+      .query()
+      .pipe(map((res: HttpResponse<IPaciente[]>) => res.body ?? []))
+      .pipe(
+        map((pacientes: IPaciente[]) =>
+          this.pacienteService.addPacienteToCollectionIfMissing(pacientes, ...(this.editForm.get('pacientes')!.value ?? []))
+        )
+      )
+      .subscribe((pacientes: IPaciente[]) => (this.pacientesSharedCollection = pacientes));
   }
 
   protected createFromForm(): IPersonalMedico {
@@ -89,6 +130,7 @@ export class PersonalMedicoUpdateComponent implements OnInit {
       telefonoContacto: this.editForm.get(['telefonoContacto'])!.value,
       correo: this.editForm.get(['correo'])!.value,
       licenciaMedica: this.editForm.get(['licenciaMedica'])!.value,
+      pacientes: this.editForm.get(['pacientes'])!.value,
     };
   }
 }

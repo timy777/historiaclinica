@@ -25,9 +25,9 @@ entity Paciente {
     fechaNacimiento LocalDate required
     genero String
     direccion String
-	carnetidentidad String required
-	email String required
-	password String required
+    carnetidentidad String required
+    email String required
+    password String required
     telefonoContacto String
     historialMedico String
 }
@@ -74,8 +74,19 @@ entity EstudioMedico {
     fechaRealizacion Instant required
 }
 
+relationship ManyToMany {
+    PersonalMedico to Paciente
+}
+
+relationship ManyToOne {
+    CitaMedica to Paciente
+    CitaMedica to PersonalMedico
+    ProcesoMedico to Paciente
+    ProcesoMedico to PersonalMedico
+    ProcesoMedico to SalaMedica
+}
+
 relationship OneToMany {
-    Paciente to CitaMedica
     PersonalMedico to ConsultaMedica
     Paciente to ConsultaMedica
     ConsultaMedica to EvaluacionFisica

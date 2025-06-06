@@ -44,6 +44,23 @@ public class PersonalMedico implements Serializable {
     )
     private Set<ConsultaMedica> consultaMedicas = new HashSet<>();
 
+    @ManyToMany
+    @JoinTable(
+        name = "rel_personal_medico__paciente",
+        joinColumns = @JoinColumn(name = "personal_medico_id"),
+        inverseJoinColumns = @JoinColumn(name = "paciente_id")
+    )
+    @JsonIgnoreProperties(value = { "consultaMedicas", "citaMedicas", "procesoMedicos", "personalMedicos" }, allowSetters = true)
+    private Set<Paciente> pacientes = new HashSet<>();
+
+    @OneToMany(mappedBy = "personalMedico")
+    @JsonIgnoreProperties(value = { "paciente", "personalMedico" }, allowSetters = true)
+    private Set<CitaMedica> citaMedicas = new HashSet<>();
+
+    @OneToMany(mappedBy = "personalMedico")
+    @JsonIgnoreProperties(value = { "paciente", "personalMedico", "salaMedica" }, allowSetters = true)
+    private Set<ProcesoMedico> procesoMedicos = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -152,6 +169,93 @@ public class PersonalMedico implements Serializable {
     public PersonalMedico removeConsultaMedica(ConsultaMedica consultaMedica) {
         this.consultaMedicas.remove(consultaMedica);
         consultaMedica.setPersonalMedico(null);
+        return this;
+    }
+
+    public Set<Paciente> getPacientes() {
+        return this.pacientes;
+    }
+
+    public void setPacientes(Set<Paciente> pacientes) {
+        this.pacientes = pacientes;
+    }
+
+    public PersonalMedico pacientes(Set<Paciente> pacientes) {
+        this.setPacientes(pacientes);
+        return this;
+    }
+
+    public PersonalMedico addPaciente(Paciente paciente) {
+        this.pacientes.add(paciente);
+        paciente.getPersonalMedicos().add(this);
+        return this;
+    }
+
+    public PersonalMedico removePaciente(Paciente paciente) {
+        this.pacientes.remove(paciente);
+        paciente.getPersonalMedicos().remove(this);
+        return this;
+    }
+
+    public Set<CitaMedica> getCitaMedicas() {
+        return this.citaMedicas;
+    }
+
+    public void setCitaMedicas(Set<CitaMedica> citaMedicas) {
+        if (this.citaMedicas != null) {
+            this.citaMedicas.forEach(i -> i.setPersonalMedico(null));
+        }
+        if (citaMedicas != null) {
+            citaMedicas.forEach(i -> i.setPersonalMedico(this));
+        }
+        this.citaMedicas = citaMedicas;
+    }
+
+    public PersonalMedico citaMedicas(Set<CitaMedica> citaMedicas) {
+        this.setCitaMedicas(citaMedicas);
+        return this;
+    }
+
+    public PersonalMedico addCitaMedica(CitaMedica citaMedica) {
+        this.citaMedicas.add(citaMedica);
+        citaMedica.setPersonalMedico(this);
+        return this;
+    }
+
+    public PersonalMedico removeCitaMedica(CitaMedica citaMedica) {
+        this.citaMedicas.remove(citaMedica);
+        citaMedica.setPersonalMedico(null);
+        return this;
+    }
+
+    public Set<ProcesoMedico> getProcesoMedicos() {
+        return this.procesoMedicos;
+    }
+
+    public void setProcesoMedicos(Set<ProcesoMedico> procesoMedicos) {
+        if (this.procesoMedicos != null) {
+            this.procesoMedicos.forEach(i -> i.setPersonalMedico(null));
+        }
+        if (procesoMedicos != null) {
+            procesoMedicos.forEach(i -> i.setPersonalMedico(this));
+        }
+        this.procesoMedicos = procesoMedicos;
+    }
+
+    public PersonalMedico procesoMedicos(Set<ProcesoMedico> procesoMedicos) {
+        this.setProcesoMedicos(procesoMedicos);
+        return this;
+    }
+
+    public PersonalMedico addProcesoMedico(ProcesoMedico procesoMedico) {
+        this.procesoMedicos.add(procesoMedico);
+        procesoMedico.setPersonalMedico(this);
+        return this;
+    }
+
+    public PersonalMedico removeProcesoMedico(ProcesoMedico procesoMedico) {
+        this.procesoMedicos.remove(procesoMedico);
+        procesoMedico.setPersonalMedico(null);
         return this;
     }
 

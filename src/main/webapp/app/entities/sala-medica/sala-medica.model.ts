@@ -1,9 +1,12 @@
+import { IProcesoMedico } from 'app/entities/proceso-medico/proceso-medico.model';
+
 export interface ISalaMedica {
   id?: number;
   nroSala?: number;
   nombre?: string;
   ubicacion?: string | null;
   equipamiento?: string | null;
+  procesoMedicos?: IProcesoMedico[] | null;
 }
 
 export class SalaMedica implements ISalaMedica {
@@ -12,7 +15,8 @@ export class SalaMedica implements ISalaMedica {
     public nroSala?: number,
     public nombre?: string,
     public ubicacion?: string | null,
-    public equipamiento?: string | null
+    public equipamiento?: string | null,
+    public procesoMedicos?: IProcesoMedico[] | null
   ) {}
 }
 

@@ -1,7 +1,9 @@
 package com.historiac.service.dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import javax.validation.constraints.*;
 
 /**
@@ -21,6 +23,8 @@ public class PersonalMedicoDTO implements Serializable {
     private String correo;
 
     private String licenciaMedica;
+
+    private Set<PacienteDTO> pacientes = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -70,6 +74,14 @@ public class PersonalMedicoDTO implements Serializable {
         this.licenciaMedica = licenciaMedica;
     }
 
+    public Set<PacienteDTO> getPacientes() {
+        return pacientes;
+    }
+
+    public void setPacientes(Set<PacienteDTO> pacientes) {
+        this.pacientes = pacientes;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -101,6 +113,7 @@ public class PersonalMedicoDTO implements Serializable {
             ", telefonoContacto='" + getTelefonoContacto() + "'" +
             ", correo='" + getCorreo() + "'" +
             ", licenciaMedica='" + getLicenciaMedica() + "'" +
+            ", pacientes=" + getPacientes() +
             "}";
     }
 }

@@ -23,7 +23,10 @@
       "telefonoContacto": "Telefono Contacto",
       "correo": "Correo",
       "licenciaMedica": "Licencia Medica",
-      "consultaMedica": "Consulta Medica"
+      "consultaMedica": "Consulta Medica",
+      "paciente": "Paciente",
+      "citaMedica": "Cita Medica",
+      "procesoMedico": "Proceso Medico"
     }
   }
 }

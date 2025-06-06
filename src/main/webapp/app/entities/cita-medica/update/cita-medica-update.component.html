@@ -84,6 +84,29 @@
             </option>
           </select>
         </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.citaMedica.personalMedico" for="field_personalMedico">Personal Medico</label>
+          <select
+            class="form-control"
+            id="field_personalMedico"
+            data-cy="personalMedico"
+            name="personalMedico"
+            formControlName="personalMedico"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                personalMedicoOption.id === editForm.get('personalMedico')!.value?.id
+                  ? editForm.get('personalMedico')!.value
+                  : personalMedicoOption
+              "
+              *ngFor="let personalMedicoOption of personalMedicosSharedCollection; trackBy: trackPersonalMedicoById"
+            >
+              {{ personalMedicoOption.id }}
+            </option>
+          </select>
+        </div>
       </div>
 
       <div>

@@ -1,6 +1,9 @@
 package com.historiac.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -31,6 +34,10 @@ public class SalaMedica implements Serializable {
 
     @Column(name = "equipamiento")
     private String equipamiento;
+
+    @OneToMany(mappedBy = "salaMedica")
+    @JsonIgnoreProperties(value = { "paciente", "personalMedico", "salaMedica" }, allowSetters = true)
+    private Set<ProcesoMedico> procesoMedicos = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -97,6 +104,37 @@ public class SalaMedica implements Serializable {
 
     public void setEquipamiento(String equipamiento) {
         this.equipamiento = equipamiento;
+    }
+
+    public Set<ProcesoMedico> getProcesoMedicos() {
+        return this.procesoMedicos;
+    }
+
+    public void setProcesoMedicos(Set<ProcesoMedico> procesoMedicos) {
+        if (this.procesoMedicos != null) {
+            this.procesoMedicos.forEach(i -> i.setSalaMedica(null));
+        }
+        if (procesoMedicos != null) {
+            procesoMedicos.forEach(i -> i.setSalaMedica(this));
+        }
+        this.procesoMedicos = procesoMedicos;
+    }
+
+    public SalaMedica procesoMedicos(Set<ProcesoMedico> procesoMedicos) {
+        this.setProcesoMedicos(procesoMedicos);
+        return this;
+    }
+
+    public SalaMedica addProcesoMedico(ProcesoMedico procesoMedico) {
+        this.procesoMedicos.add(procesoMedico);
+        procesoMedico.setSalaMedica(this);
+        return this;
+    }
+
+    public SalaMedica removeProcesoMedico(ProcesoMedico procesoMedico) {
+        this.procesoMedicos.remove(procesoMedico);
+        procesoMedico.setSalaMedica(null);
+        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

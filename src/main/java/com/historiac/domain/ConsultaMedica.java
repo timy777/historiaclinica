@@ -53,11 +53,11 @@ public class ConsultaMedica implements Serializable {
     private Set<EstudioMedico> estudioMedicos = new HashSet<>();
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "consultaMedicas" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "consultaMedicas", "pacientes", "citaMedicas", "procesoMedicos" }, allowSetters = true)
     private PersonalMedico personalMedico;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "citaMedicas", "consultaMedicas" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "consultaMedicas", "citaMedicas", "procesoMedicos", "personalMedicos" }, allowSetters = true)
     private Paciente paciente;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

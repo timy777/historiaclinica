@@ -71,6 +71,18 @@
             formControlName="licenciaMedica"
           />
         </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="historiacApp.personalMedico.paciente" for="field_pacientes">Paciente</label>
+          <select class="form-control" id="field_pacientes" data-cy="paciente" multiple name="pacientes" formControlName="pacientes">
+            <option
+              [ngValue]="getSelectedPaciente(pacienteOption, editForm.get('pacientes')!.value)"
+              *ngFor="let pacienteOption of pacientesSharedCollection; trackBy: trackPacienteById"
+            >
+              {{ pacienteOption.id }}
+            </option>
+          </select>
+        </div>
       </div>
 
       <div>
