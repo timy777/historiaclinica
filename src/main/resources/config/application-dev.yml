@@ -61,7 +61,7 @@ spring:
         useServerPrepStmts: true
   jpa:
   liquibase:
-    enable: true
+    enabled: true
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev
   mail:
