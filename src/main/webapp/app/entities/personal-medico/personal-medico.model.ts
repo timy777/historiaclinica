@@ -10,6 +10,7 @@ export interface IPersonalMedico {
   telefonoContacto?: string | null;
   correo?: string | null;
   licenciaMedica?: string | null;
+  hashBlockchain?: string | null;
   consultaMedicas?: IConsultaMedica[] | null;
   pacientes?: IPaciente[] | null;
   citaMedicas?: ICitaMedica[] | null;
@@ -24,6 +25,7 @@ export class PersonalMedico implements IPersonalMedico {
     public telefonoContacto?: string | null,
     public correo?: string | null,
     public licenciaMedica?: string | null,
+    public hashBlockchain?: string | null,
     public consultaMedicas?: IConsultaMedica[] | null,
     public pacientes?: IPaciente[] | null,
     public citaMedicas?: ICitaMedica[] | null,

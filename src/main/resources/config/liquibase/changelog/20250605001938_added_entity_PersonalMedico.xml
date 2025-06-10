@@ -29,6 +29,9 @@
             <column name="licencia_medica" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="hash_blockchain" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
     </changeSet>
@@ -69,6 +72,7 @@
             <column name="telefono_contacto" type="string"/>
             <column name="correo" type="string"/>
             <column name="licencia_medica" type="string"/>
+            <column name="hash_blockchain" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

@@ -37,6 +37,9 @@ public class PersonalMedico implements Serializable {
     @Column(name = "licencia_medica")
     private String licenciaMedica;
 
+    @Column(name = "hash_blockchain")
+    private String hashBlockchain;
+
     @OneToMany(mappedBy = "personalMedico")
     @JsonIgnoreProperties(
         value = { "evaluacionFisicas", "medicacions", "tratamientos", "estudioMedicos", "personalMedico", "paciente" },
@@ -139,6 +142,19 @@ public class PersonalMedico implements Serializable {
 
     public void setLicenciaMedica(String licenciaMedica) {
         this.licenciaMedica = licenciaMedica;
+    }
+
+    public String getHashBlockchain() {
+        return this.hashBlockchain;
+    }
+
+    public PersonalMedico hashBlockchain(String hashBlockchain) {
+        this.setHashBlockchain(hashBlockchain);
+        return this;
+    }
+
+    public void setHashBlockchain(String hashBlockchain) {
+        this.hashBlockchain = hashBlockchain;
     }
 
     public Set<ConsultaMedica> getConsultaMedicas() {
@@ -288,6 +304,7 @@ public class PersonalMedico implements Serializable {
             ", telefonoContacto='" + getTelefonoContacto() + "'" +
             ", correo='" + getCorreo() + "'" +
             ", licenciaMedica='" + getLicenciaMedica() + "'" +
+            ", hashBlockchain='" + getHashBlockchain() + "'" +
             "}";
     }
 }

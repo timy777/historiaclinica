@@ -18,6 +18,7 @@ entity PersonalMedico {
     telefonoContacto String
     correo String
     licenciaMedica String
+	hashBlockchain String
 }
 
 entity Paciente {
