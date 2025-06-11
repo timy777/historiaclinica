@@ -26,7 +26,6 @@ describe('PersonalMedico Service', () => {
       telefonoContacto: 'AAAAAAA',
       correo: 'AAAAAAA',
       licenciaMedica: 'AAAAAAA',
-      hashBlockchain: 'AAAAAAA',
     };
   });
 
@@ -67,7 +66,6 @@ describe('PersonalMedico Service', () => {
           telefonoContacto: 'BBBBBB',
           correo: 'BBBBBB',
           licenciaMedica: 'BBBBBB',
-          hashBlockchain: 'BBBBBB',
         },
         elemDefault
       );
@@ -111,7 +109,6 @@ describe('PersonalMedico Service', () => {
           telefonoContacto: 'BBBBBB',
           correo: 'BBBBBB',
           licenciaMedica: 'BBBBBB',
-          hashBlockchain: 'BBBBBB',
         },
         elemDefault
       );
@@ -163,7 +160,7 @@ describe('PersonalMedico Service', () => {
       });
 
       it('should add only unique PersonalMedico to an array', () => {
-        const personalMedicoArray: IPersonalMedico[] = [{ id: 123 }, { id: 456 }, { id: 62674 }];
+        const personalMedicoArray: IPersonalMedico[] = [{ id: 123 }, { id: 456 }, { id: 28136 }];
         const personalMedicoCollection: IPersonalMedico[] = [{ id: 123 }];
         expectedResult = service.addPersonalMedicoToCollectionIfMissing(personalMedicoCollection, ...personalMedicoArray);
         expect(expectedResult).toHaveLength(3);

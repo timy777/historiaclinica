@@ -45,6 +45,9 @@
           <th scope="col" jhiSortBy="estado">
             <span jhiTranslate="historiacApp.procesoMedico.estado">Estado</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="hashBlockchain">
+            <span jhiTranslate="historiacApp.procesoMedico.hashBlockchain">Hash Blockchain</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="paciente.id">
             <span jhiTranslate="historiacApp.procesoMedico.paciente">Paciente</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -66,6 +69,7 @@
           <td>{{ procesoMedico.fechaInicio | formatMediumDatetime }}</td>
           <td>{{ procesoMedico.fechaFin | formatMediumDatetime }}</td>
           <td>{{ procesoMedico.estado }}</td>
+          <td>{{ procesoMedico.hashBlockchain }}</td>
           <td>
             <div *ngIf="procesoMedico.paciente">
               <a [routerLink]="['/paciente', procesoMedico.paciente?.id, 'view']">{{ procesoMedico.paciente?.id }}</a>

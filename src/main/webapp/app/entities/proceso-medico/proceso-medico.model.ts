@@ -9,6 +9,7 @@ export interface IProcesoMedico {
   fechaInicio?: dayjs.Dayjs;
   fechaFin?: dayjs.Dayjs | null;
   estado?: string;
+  hashBlockchain?: string | null;
   paciente?: IPaciente | null;
   personalMedico?: IPersonalMedico | null;
   salaMedica?: ISalaMedica | null;
@@ -21,6 +22,7 @@ export class ProcesoMedico implements IProcesoMedico {
     public fechaInicio?: dayjs.Dayjs,
     public fechaFin?: dayjs.Dayjs | null,
     public estado?: string,
+    public hashBlockchain?: string | null,
     public paciente?: IPaciente | null,
     public personalMedico?: IPersonalMedico | null,
     public salaMedica?: ISalaMedica | null

@@ -55,9 +55,6 @@ class PersonalMedicoResourceIT {
     private static final String DEFAULT_LICENCIA_MEDICA = "AAAAAAAAAA";
     private static final String UPDATED_LICENCIA_MEDICA = "BBBBBBBBBB";
 
-    private static final String DEFAULT_HASH_BLOCKCHAIN = "AAAAAAAAAA";
-    private static final String UPDATED_HASH_BLOCKCHAIN = "BBBBBBBBBB";
-
     private static final String ENTITY_API_URL = "/api/personal-medicos";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -96,8 +93,7 @@ class PersonalMedicoResourceIT {
             .especialidad(DEFAULT_ESPECIALIDAD)
             .telefonoContacto(DEFAULT_TELEFONO_CONTACTO)
             .correo(DEFAULT_CORREO)
-            .licenciaMedica(DEFAULT_LICENCIA_MEDICA)
-            .hashBlockchain(DEFAULT_HASH_BLOCKCHAIN);
+            .licenciaMedica(DEFAULT_LICENCIA_MEDICA);
         return personalMedico;
     }
 
@@ -113,8 +109,7 @@ class PersonalMedicoResourceIT {
             .especialidad(UPDATED_ESPECIALIDAD)
             .telefonoContacto(UPDATED_TELEFONO_CONTACTO)
             .correo(UPDATED_CORREO)
-            .licenciaMedica(UPDATED_LICENCIA_MEDICA)
-            .hashBlockchain(UPDATED_HASH_BLOCKCHAIN);
+            .licenciaMedica(UPDATED_LICENCIA_MEDICA);
         return personalMedico;
     }
 
@@ -144,7 +139,6 @@ class PersonalMedicoResourceIT {
         assertThat(testPersonalMedico.getTelefonoContacto()).isEqualTo(DEFAULT_TELEFONO_CONTACTO);
         assertThat(testPersonalMedico.getCorreo()).isEqualTo(DEFAULT_CORREO);
         assertThat(testPersonalMedico.getLicenciaMedica()).isEqualTo(DEFAULT_LICENCIA_MEDICA);
-        assertThat(testPersonalMedico.getHashBlockchain()).isEqualTo(DEFAULT_HASH_BLOCKCHAIN);
     }
 
     @Test
@@ -204,8 +198,7 @@ class PersonalMedicoResourceIT {
             .andExpect(jsonPath("$.[*].especialidad").value(hasItem(DEFAULT_ESPECIALIDAD)))
             .andExpect(jsonPath("$.[*].telefonoContacto").value(hasItem(DEFAULT_TELEFONO_CONTACTO)))
             .andExpect(jsonPath("$.[*].correo").value(hasItem(DEFAULT_CORREO)))
-            .andExpect(jsonPath("$.[*].licenciaMedica").value(hasItem(DEFAULT_LICENCIA_MEDICA)))
-            .andExpect(jsonPath("$.[*].hashBlockchain").value(hasItem(DEFAULT_HASH_BLOCKCHAIN)));
+            .andExpect(jsonPath("$.[*].licenciaMedica").value(hasItem(DEFAULT_LICENCIA_MEDICA)));
     }
 
     @SuppressWarnings({ "unchecked" })
@@ -242,8 +235,7 @@ class PersonalMedicoResourceIT {
             .andExpect(jsonPath("$.especialidad").value(DEFAULT_ESPECIALIDAD))
             .andExpect(jsonPath("$.telefonoContacto").value(DEFAULT_TELEFONO_CONTACTO))
             .andExpect(jsonPath("$.correo").value(DEFAULT_CORREO))
-            .andExpect(jsonPath("$.licenciaMedica").value(DEFAULT_LICENCIA_MEDICA))
-            .andExpect(jsonPath("$.hashBlockchain").value(DEFAULT_HASH_BLOCKCHAIN));
+            .andExpect(jsonPath("$.licenciaMedica").value(DEFAULT_LICENCIA_MEDICA));
     }
 
     @Test
@@ -270,8 +262,7 @@ class PersonalMedicoResourceIT {
             .especialidad(UPDATED_ESPECIALIDAD)
             .telefonoContacto(UPDATED_TELEFONO_CONTACTO)
             .correo(UPDATED_CORREO)
-            .licenciaMedica(UPDATED_LICENCIA_MEDICA)
-            .hashBlockchain(UPDATED_HASH_BLOCKCHAIN);
+            .licenciaMedica(UPDATED_LICENCIA_MEDICA);
         PersonalMedicoDTO personalMedicoDTO = personalMedicoMapper.toDto(updatedPersonalMedico);
 
         restPersonalMedicoMockMvc
@@ -291,7 +282,6 @@ class PersonalMedicoResourceIT {
         assertThat(testPersonalMedico.getTelefonoContacto()).isEqualTo(UPDATED_TELEFONO_CONTACTO);
         assertThat(testPersonalMedico.getCorreo()).isEqualTo(UPDATED_CORREO);
         assertThat(testPersonalMedico.getLicenciaMedica()).isEqualTo(UPDATED_LICENCIA_MEDICA);
-        assertThat(testPersonalMedico.getHashBlockchain()).isEqualTo(UPDATED_HASH_BLOCKCHAIN);
     }
 
     @Test
@@ -392,7 +382,6 @@ class PersonalMedicoResourceIT {
         assertThat(testPersonalMedico.getTelefonoContacto()).isEqualTo(DEFAULT_TELEFONO_CONTACTO);
         assertThat(testPersonalMedico.getCorreo()).isEqualTo(DEFAULT_CORREO);
         assertThat(testPersonalMedico.getLicenciaMedica()).isEqualTo(UPDATED_LICENCIA_MEDICA);
-        assertThat(testPersonalMedico.getHashBlockchain()).isEqualTo(DEFAULT_HASH_BLOCKCHAIN);
     }
 
     @Test
@@ -412,8 +401,7 @@ class PersonalMedicoResourceIT {
             .especialidad(UPDATED_ESPECIALIDAD)
             .telefonoContacto(UPDATED_TELEFONO_CONTACTO)
             .correo(UPDATED_CORREO)
-            .licenciaMedica(UPDATED_LICENCIA_MEDICA)
-            .hashBlockchain(UPDATED_HASH_BLOCKCHAIN);
+            .licenciaMedica(UPDATED_LICENCIA_MEDICA);
 
         restPersonalMedicoMockMvc
             .perform(
@@ -432,7 +420,6 @@ class PersonalMedicoResourceIT {
         assertThat(testPersonalMedico.getTelefonoContacto()).isEqualTo(UPDATED_TELEFONO_CONTACTO);
         assertThat(testPersonalMedico.getCorreo()).isEqualTo(UPDATED_CORREO);
         assertThat(testPersonalMedico.getLicenciaMedica()).isEqualTo(UPDATED_LICENCIA_MEDICA);
-        assertThat(testPersonalMedico.getHashBlockchain()).isEqualTo(UPDATED_HASH_BLOCKCHAIN);
     }
 
     @Test

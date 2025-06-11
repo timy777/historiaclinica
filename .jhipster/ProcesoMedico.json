@@ -23,6 +23,10 @@
       "fieldName": "estado",
       "fieldType": "String",
       "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "hashBlockchain",
+      "fieldType": "String"
     }
   ],
   "fluentMethods": true,

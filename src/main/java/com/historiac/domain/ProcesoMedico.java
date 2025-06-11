@@ -35,6 +35,9 @@ public class ProcesoMedico implements Serializable {
     @Column(name = "estado", nullable = false)
     private String estado;
 
+    @Column(name = "hash_blockchain")
+    private String hashBlockchain;
+
     @ManyToOne
     @JsonIgnoreProperties(value = { "consultaMedicas", "citaMedicas", "procesoMedicos", "personalMedicos" }, allowSetters = true)
     private Paciente paciente;
@@ -114,6 +117,19 @@ public class ProcesoMedico implements Serializable {
         this.estado = estado;
     }
 
+    public String getHashBlockchain() {
+        return this.hashBlockchain;
+    }
+
+    public ProcesoMedico hashBlockchain(String hashBlockchain) {
+        this.setHashBlockchain(hashBlockchain);
+        return this;
+    }
+
+    public void setHashBlockchain(String hashBlockchain) {
+        this.hashBlockchain = hashBlockchain;
+    }
+
     public Paciente getPaciente() {
         return this.paciente;
     }
@@ -181,6 +197,7 @@ public class ProcesoMedico implements Serializable {
             ", fechaInicio='" + getFechaInicio() + "'" +
             ", fechaFin='" + getFechaFin() + "'" +
             ", estado='" + getEstado() + "'" +
+            ", hashBlockchain='" + getHashBlockchain() + "'" +
             "}";
     }
 }

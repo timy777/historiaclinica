@@ -22,6 +22,7 @@
       "fechaInicio": "Fecha Inicio",
       "fechaFin": "Fecha Fin",
       "estado": "Estado",
+      "hashBlockchain": "Hash Blockchain",
       "paciente": "Paciente",
       "personalMedico": "Personal Medico",
       "salaMedica": "Sala Medica"

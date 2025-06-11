@@ -23,6 +23,8 @@ public class ProcesoMedicoDTO implements Serializable {
     @NotNull
     private String estado;
 
+    private String hashBlockchain;
+
     private PacienteDTO paciente;
 
     private PersonalMedicoDTO personalMedico;
@@ -67,6 +69,14 @@ public class ProcesoMedicoDTO implements Serializable {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getHashBlockchain() {
+        return hashBlockchain;
+    }
+
+    public void setHashBlockchain(String hashBlockchain) {
+        this.hashBlockchain = hashBlockchain;
     }
 
     public PacienteDTO getPaciente() {
@@ -123,6 +133,7 @@ public class ProcesoMedicoDTO implements Serializable {
             ", fechaInicio='" + getFechaInicio() + "'" +
             ", fechaFin='" + getFechaFin() + "'" +
             ", estado='" + getEstado() + "'" +
+            ", hashBlockchain='" + getHashBlockchain() + "'" +
             ", paciente=" + getPaciente() +
             ", personalMedico=" + getPersonalMedico() +
             ", salaMedica=" + getSalaMedica() +

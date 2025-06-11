@@ -25,10 +25,6 @@
     {
       "fieldName": "licenciaMedica",
       "fieldType": "String"
-    },
-    {
-      "fieldName": "hashBlockchain",
-      "fieldType": "String"
     }
   ],
   "fluentMethods": true,

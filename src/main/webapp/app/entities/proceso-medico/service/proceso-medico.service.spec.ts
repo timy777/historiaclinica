@@ -29,6 +29,7 @@ describe('ProcesoMedico Service', () => {
       fechaInicio: currentDate,
       fechaFin: currentDate,
       estado: 'AAAAAAA',
+      hashBlockchain: 'AAAAAAA',
     };
   });
 
@@ -82,6 +83,7 @@ describe('ProcesoMedico Service', () => {
           fechaInicio: currentDate.format(DATE_TIME_FORMAT),
           fechaFin: currentDate.format(DATE_TIME_FORMAT),
           estado: 'BBBBBB',
+          hashBlockchain: 'BBBBBB',
         },
         elemDefault
       );
@@ -135,6 +137,7 @@ describe('ProcesoMedico Service', () => {
           fechaInicio: currentDate.format(DATE_TIME_FORMAT),
           fechaFin: currentDate.format(DATE_TIME_FORMAT),
           estado: 'BBBBBB',
+          hashBlockchain: 'BBBBBB',
         },
         elemDefault
       );
@@ -192,7 +195,7 @@ describe('ProcesoMedico Service', () => {
       });
 
       it('should add only unique ProcesoMedico to an array', () => {
-        const procesoMedicoArray: IProcesoMedico[] = [{ id: 123 }, { id: 456 }, { id: 6544 }];
+        const procesoMedicoArray: IProcesoMedico[] = [{ id: 123 }, { id: 456 }, { id: 55733 }];
         const procesoMedicoCollection: IProcesoMedico[] = [{ id: 123 }];
         expectedResult = service.addProcesoMedicoToCollectionIfMissing(procesoMedicoCollection, ...procesoMedicoArray);
         expect(expectedResult).toHaveLength(3);

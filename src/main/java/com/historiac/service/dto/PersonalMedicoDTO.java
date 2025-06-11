@@ -24,8 +24,6 @@ public class PersonalMedicoDTO implements Serializable {
 
     private String licenciaMedica;
 
-    private String hashBlockchain;
-
     private Set<PacienteDTO> pacientes = new HashSet<>();
 
     public Long getId() {
@@ -76,14 +74,6 @@ public class PersonalMedicoDTO implements Serializable {
         this.licenciaMedica = licenciaMedica;
     }
 
-    public String getHashBlockchain() {
-        return hashBlockchain;
-    }
-
-    public void setHashBlockchain(String hashBlockchain) {
-        this.hashBlockchain = hashBlockchain;
-    }
-
     public Set<PacienteDTO> getPacientes() {
         return pacientes;
     }
@@ -123,7 +113,6 @@ public class PersonalMedicoDTO implements Serializable {
             ", telefonoContacto='" + getTelefonoContacto() + "'" +
             ", correo='" + getCorreo() + "'" +
             ", licenciaMedica='" + getLicenciaMedica() + "'" +
-            ", hashBlockchain='" + getHashBlockchain() + "'" +
             ", pacientes=" + getPacientes() +
             "}";
     }

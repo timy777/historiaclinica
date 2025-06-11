@@ -26,7 +26,6 @@ export class PersonalMedicoUpdateComponent implements OnInit {
     telefonoContacto: [],
     correo: [],
     licenciaMedica: [],
-    hashBlockchain: [],
     pacientes: [],
   });
 
@@ -101,7 +100,6 @@ export class PersonalMedicoUpdateComponent implements OnInit {
       telefonoContacto: personalMedico.telefonoContacto,
       correo: personalMedico.correo,
       licenciaMedica: personalMedico.licenciaMedica,
-      hashBlockchain: personalMedico.hashBlockchain,
       pacientes: personalMedico.pacientes,
     });
 
@@ -132,7 +130,6 @@ export class PersonalMedicoUpdateComponent implements OnInit {
       telefonoContacto: this.editForm.get(['telefonoContacto'])!.value,
       correo: this.editForm.get(['correo'])!.value,
       licenciaMedica: this.editForm.get(['licenciaMedica'])!.value,
-      hashBlockchain: this.editForm.get(['hashBlockchain'])!.value,
       pacientes: this.editForm.get(['pacientes'])!.value,
     };
   }

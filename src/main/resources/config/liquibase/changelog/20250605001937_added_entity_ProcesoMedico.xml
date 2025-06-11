@@ -26,6 +26,9 @@
             <column name="estado" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
+            <column name="hash_blockchain" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <column name="paciente_id" type="bigint">
                 <constraints nullable="true" />
             </column>
@@ -62,6 +65,7 @@
             <column name="fecha_inicio" type="date"/>
             <column name="fecha_fin" type="date"/>
             <column name="estado" type="string"/>
+            <column name="hash_blockchain" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

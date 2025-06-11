@@ -95,6 +95,20 @@
         </div>
 
         <div class="row mb-3">
+          <label class="form-label" jhiTranslate="historiacApp.procesoMedico.hashBlockchain" for="field_hashBlockchain"
+            >Hash Blockchain</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="hashBlockchain"
+            id="field_hashBlockchain"
+            data-cy="hashBlockchain"
+            formControlName="hashBlockchain"
+          />
+        </div>
+
+        <div class="row mb-3">
           <label class="form-label" jhiTranslate="historiacApp.procesoMedico.paciente" for="field_paciente">Paciente</label>
           <select class="form-control" id="field_paciente" data-cy="paciente" name="paciente" formControlName="paciente">
             <option [ngValue]="null"></option>

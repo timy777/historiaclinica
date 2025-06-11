@@ -45,6 +45,9 @@ class ProcesoMedicoResourceIT {
     private static final String DEFAULT_ESTADO = "AAAAAAAAAA";
     private static final String UPDATED_ESTADO = "BBBBBBBBBB";
 
+    private static final String DEFAULT_HASH_BLOCKCHAIN = "AAAAAAAAAA";
+    private static final String UPDATED_HASH_BLOCKCHAIN = "BBBBBBBBBB";
+
     private static final String ENTITY_API_URL = "/api/proceso-medicos";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -76,7 +79,8 @@ class ProcesoMedicoResourceIT {
             .tipoProceso(DEFAULT_TIPO_PROCESO)
             .fechaInicio(DEFAULT_FECHA_INICIO)
             .fechaFin(DEFAULT_FECHA_FIN)
-            .estado(DEFAULT_ESTADO);
+            .estado(DEFAULT_ESTADO)
+            .hashBlockchain(DEFAULT_HASH_BLOCKCHAIN);
         return procesoMedico;
     }
 
@@ -91,7 +95,8 @@ class ProcesoMedicoResourceIT {
             .tipoProceso(UPDATED_TIPO_PROCESO)
             .fechaInicio(UPDATED_FECHA_INICIO)
             .fechaFin(UPDATED_FECHA_FIN)
-            .estado(UPDATED_ESTADO);
+            .estado(UPDATED_ESTADO)
+            .hashBlockchain(UPDATED_HASH_BLOCKCHAIN);
         return procesoMedico;
     }
 
@@ -120,6 +125,7 @@ class ProcesoMedicoResourceIT {
         assertThat(testProcesoMedico.getFechaInicio()).isEqualTo(DEFAULT_FECHA_INICIO);
         assertThat(testProcesoMedico.getFechaFin()).isEqualTo(DEFAULT_FECHA_FIN);
         assertThat(testProcesoMedico.getEstado()).isEqualTo(DEFAULT_ESTADO);
+        assertThat(testProcesoMedico.getHashBlockchain()).isEqualTo(DEFAULT_HASH_BLOCKCHAIN);
     }
 
     @Test
@@ -218,7 +224,8 @@ class ProcesoMedicoResourceIT {
             .andExpect(jsonPath("$.[*].tipoProceso").value(hasItem(DEFAULT_TIPO_PROCESO)))
             .andExpect(jsonPath("$.[*].fechaInicio").value(hasItem(DEFAULT_FECHA_INICIO.toString())))
             .andExpect(jsonPath("$.[*].fechaFin").value(hasItem(DEFAULT_FECHA_FIN.toString())))
-            .andExpect(jsonPath("$.[*].estado").value(hasItem(DEFAULT_ESTADO)));
+            .andExpect(jsonPath("$.[*].estado").value(hasItem(DEFAULT_ESTADO)))
+            .andExpect(jsonPath("$.[*].hashBlockchain").value(hasItem(DEFAULT_HASH_BLOCKCHAIN)));
     }
 
     @Test
@@ -236,7 +243,8 @@ class ProcesoMedicoResourceIT {
             .andExpect(jsonPath("$.tipoProceso").value(DEFAULT_TIPO_PROCESO))
             .andExpect(jsonPath("$.fechaInicio").value(DEFAULT_FECHA_INICIO.toString()))
             .andExpect(jsonPath("$.fechaFin").value(DEFAULT_FECHA_FIN.toString()))
-            .andExpect(jsonPath("$.estado").value(DEFAULT_ESTADO));
+            .andExpect(jsonPath("$.estado").value(DEFAULT_ESTADO))
+            .andExpect(jsonPath("$.hashBlockchain").value(DEFAULT_HASH_BLOCKCHAIN));
     }
 
     @Test
@@ -262,7 +270,8 @@ class ProcesoMedicoResourceIT {
             .tipoProceso(UPDATED_TIPO_PROCESO)
             .fechaInicio(UPDATED_FECHA_INICIO)
             .fechaFin(UPDATED_FECHA_FIN)
-            .estado(UPDATED_ESTADO);
+            .estado(UPDATED_ESTADO)
+            .hashBlockchain(UPDATED_HASH_BLOCKCHAIN);
         ProcesoMedicoDTO procesoMedicoDTO = procesoMedicoMapper.toDto(updatedProcesoMedico);
 
         restProcesoMedicoMockMvc
@@ -281,6 +290,7 @@ class ProcesoMedicoResourceIT {
         assertThat(testProcesoMedico.getFechaInicio()).isEqualTo(UPDATED_FECHA_INICIO);
         assertThat(testProcesoMedico.getFechaFin()).isEqualTo(UPDATED_FECHA_FIN);
         assertThat(testProcesoMedico.getEstado()).isEqualTo(UPDATED_ESTADO);
+        assertThat(testProcesoMedico.getHashBlockchain()).isEqualTo(UPDATED_HASH_BLOCKCHAIN);
     }
 
     @Test
@@ -362,6 +372,8 @@ class ProcesoMedicoResourceIT {
         ProcesoMedico partialUpdatedProcesoMedico = new ProcesoMedico();
         partialUpdatedProcesoMedico.setId(procesoMedico.getId());
 
+        partialUpdatedProcesoMedico.hashBlockchain(UPDATED_HASH_BLOCKCHAIN);
+
         restProcesoMedicoMockMvc
             .perform(
                 patch(ENTITY_API_URL_ID, partialUpdatedProcesoMedico.getId())
@@ -378,6 +390,7 @@ class ProcesoMedicoResourceIT {
         assertThat(testProcesoMedico.getFechaInicio()).isEqualTo(DEFAULT_FECHA_INICIO);
         assertThat(testProcesoMedico.getFechaFin()).isEqualTo(DEFAULT_FECHA_FIN);
         assertThat(testProcesoMedico.getEstado()).isEqualTo(DEFAULT_ESTADO);
+        assertThat(testProcesoMedico.getHashBlockchain()).isEqualTo(UPDATED_HASH_BLOCKCHAIN);
     }
 
     @Test
@@ -396,7 +409,8 @@ class ProcesoMedicoResourceIT {
             .tipoProceso(UPDATED_TIPO_PROCESO)
             .fechaInicio(UPDATED_FECHA_INICIO)
             .fechaFin(UPDATED_FECHA_FIN)
-            .estado(UPDATED_ESTADO);
+            .estado(UPDATED_ESTADO)
+            .hashBlockchain(UPDATED_HASH_BLOCKCHAIN);
 
         restProcesoMedicoMockMvc
             .perform(
@@ -414,6 +428,7 @@ class ProcesoMedicoResourceIT {
         assertThat(testProcesoMedico.getFechaInicio()).isEqualTo(UPDATED_FECHA_INICIO);
         assertThat(testProcesoMedico.getFechaFin()).isEqualTo(UPDATED_FECHA_FIN);
         assertThat(testProcesoMedico.getEstado()).isEqualTo(UPDATED_ESTADO);
+        assertThat(testProcesoMedico.getHashBlockchain()).isEqualTo(UPDATED_HASH_BLOCKCHAIN);
     }
 
     @Test
