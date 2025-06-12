@@ -15,23 +15,30 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring")
 public interface ProcesoMedicoMapper extends EntityMapper<ProcesoMedicoDTO, ProcesoMedico> {
-    @Mapping(target = "paciente", source = "paciente", qualifiedByName = "pacienteId")
-    @Mapping(target = "personalMedico", source = "personalMedico", qualifiedByName = "personalMedicoId")
-    @Mapping(target = "salaMedica", source = "salaMedica", qualifiedByName = "salaMedicaId")
+    @Mapping(target = "paciente", source = "paciente", qualifiedByName = "pacienteInfo")
+    @Mapping(target = "personalMedico", source = "personalMedico", qualifiedByName = "medicoInfo")
+    @Mapping(target = "salaMedica", source = "salaMedica", qualifiedByName = "salaInfo")
     ProcesoMedicoDTO toDto(ProcesoMedico s);
 
-    @Named("pacienteId")
+    // Paciente con nombre y ID
+    @Named("pacienteInfo")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    PacienteDTO toDtoPacienteId(Paciente paciente);
+    @Mapping(target = "nombre", source = "nombre")
+    PacienteDTO toDtoPacienteInfo(Paciente paciente);
 
-    @Named("personalMedicoId")
+    // Médico con nombre, especialidad y ID
+    @Named("medicoInfo")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    PersonalMedicoDTO toDtoPersonalMedicoId(PersonalMedico personalMedico);
+    @Mapping(target = "nombre", source = "nombre")
+    @Mapping(target = "especialidad", source = "especialidad")
+    PersonalMedicoDTO toDtoMedicoInfo(PersonalMedico medico);
 
-    @Named("salaMedicaId")
+    // Sala médica con ID y nombre
+    @Named("salaInfo")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    SalaMedicaDTO toDtoSalaMedicaId(SalaMedica salaMedica);
+    @Mapping(target = "nombre", source = "nombre")
+    SalaMedicaDTO toDtoSalaInfo(SalaMedica sala);
 }
